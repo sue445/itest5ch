@@ -21,11 +21,16 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "hpricot"
+
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "onkcop", "0.52.1.1"
+  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rspec-its"
   spec.add_development_dependency "rubocop", "0.52.1"
   spec.add_development_dependency "rubocop-rspec", "1.23.0"
+  spec.add_development_dependency "webmock"
   spec.add_development_dependency "yard"
 end

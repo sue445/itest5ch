@@ -1,5 +1,8 @@
 require "bundler/setup"
 require "itest5ch"
+require "rspec/its"
+require "webmock/rspec"
+require "pry"
 
 Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
 
