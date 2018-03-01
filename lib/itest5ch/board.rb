@@ -32,20 +32,24 @@ module Itest5ch
         next if ul["id"] == "history"
 
         category_name = ul.at("/li[@class='pure-menu-item pure-menu-selected']").inner_text.strip
-        boards =
-          ul.search("/li").
-            select { |li| li["class"].include?("pure-menu-item") && !li["class"].include?("pure-menu-selected") }.
-            each_with_object([]) do |li, _boards|
-
-            url = URI.join(BOARDS_URL, li.at("/a")["href"]).to_s
-            name = li.inner_text.strip
-
-            _boards << Board.new(url, name: name)
-          end
+        boards = get_boards(ul)
 
         categories[category_name] = boards
       end
     end
+
+    def self.get_boards(ul)
+      ul.search("/li").
+        select { |li| li["class"].include?("pure-menu-item") && !li["class"].include?("pure-menu-selected") }.
+        each_with_object([]) do |li, boards|
+
+        url = URI.join(BOARDS_URL, li.at("/a")["href"]).to_s
+        name = li.inner_text.strip
+
+        boards << Board.new(url, name: name)
+      end
+    end
+    private_class_method :get_boards
 
     # @param category_name [String]
     #
