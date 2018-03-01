@@ -1,7 +1,7 @@
 module Itest5ch
   class Board
     extend HtmlMethods
-    BOARDS_URL = "http://itest.5ch.net/"
+    BOARDS_URL = "http://itest.5ch.net/".freeze
 
     # @!attribute [rw] url
     #   @return [String]
