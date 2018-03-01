@@ -1,5 +1,6 @@
 module Itest5ch
   class Board
+    extend HtmlMethods
     BOARDS_URL = "http://itest.5ch.net/"
 
     # @!attribute [rw] url
@@ -10,7 +11,6 @@ module Itest5ch
     #   @return [String]
     attr_accessor :name
 
-    extend HtmlMethods
 
     # @param url  [String]
     # @param name [String]
