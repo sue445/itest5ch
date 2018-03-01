@@ -2,6 +2,7 @@ require "itest5ch/version"
 require "itest5ch/html_methods"
 require "itest5ch/board"
 require "itest5ch/config"
+require "itest5ch/thread"
 require "hpricot"
 
 module Itest5ch

@@ -4,6 +4,25 @@ RSpec.describe Itest5ch::Board do
       to_return(status: 200, body: fixture("index.html"))
   end
 
+  let(:board) { Itest5ch::Board.new("http://itest.5ch.net/subback/applism") }
+
+  describe "#threads" do
+    subject { board.threads }
+
+    before do
+      stub_request(:get, "http://itest.5ch.net/subbacks/applism.json").
+        to_return(status: 200, body: fixture("applism.json"))
+    end
+
+    its(:count) { should eq 632 }
+
+    its("first.subdomain")      { should eq "egg" }
+    its("first.board")          { should eq "applism" }
+    its("first.dat")            { should eq 1519836119 }
+    its("first.name")           { should eq "【マギレコ】マギアレコード 魔法少女まどか☆マギカ外伝 877周目" }
+    its("first.comments_count") { should eq 249 }
+  end
+
   describe ".all" do
     subject { Itest5ch::Board.all }
 

@@ -1,6 +1,10 @@
 module Itest5ch
+  require "json"
+
   class Board
+    include HtmlMethods
     extend HtmlMethods
+
     BOARDS_URL = "http://itest.5ch.net/".freeze
 
     # @!attribute [rw] url
@@ -20,6 +24,22 @@ module Itest5ch
 
     def ==(other)
       other.is_a?(Board) && url == other.url && name == other.name
+    end
+
+    # @return [Array<Itest5ch::Thread>]
+    def threads
+      json_url = "#{url.gsub("/subback/", "/subbacks/")}.json"
+      hash = JSON.parse(get_html(json_url, referer: url))
+      hash["threads"].map do |thread|
+        board, dat = thread[3].split("/", 2)
+        Itest5ch::Thread.new(
+          subdomain:      thread[2],
+          board:          board,
+          dat:            dat.to_i,
+          name:           thread[5],
+          comments_count: thread[1],
+        )
+      end
     end
 
     # Get all boards
