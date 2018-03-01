@@ -47,5 +47,12 @@ module Itest5ch
         categories[category_name] = boards
       end
     end
+
+    # @param category_name [String]
+    #
+    # @return [Array<Itest5ch::Board>]
+    def self.find_category_boards(category_name)
+      all[category_name]
+    end
   end
 end
