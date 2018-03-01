@@ -11,7 +11,6 @@ module Itest5ch
     #   @return [String]
     attr_accessor :name
 
-
     # @param url  [String]
     # @param name [String]
     def initialize(url, name: nil)
