@@ -32,9 +32,7 @@ module Itest5ch
         next if ul["id"] == "history"
 
         category_name = ul.at("/li[@class='pure-menu-item pure-menu-selected']").inner_text.strip
-        boards = get_boards(ul)
-
-        categories[category_name] = boards
+        categories[category_name] = get_boards(ul)
       end
     end
 
