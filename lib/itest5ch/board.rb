@@ -54,5 +54,13 @@ module Itest5ch
     def self.find_category_boards(category_name)
       all[category_name]
     end
+
+    # @param board_name [String] name or id
+    #
+    # @return [Itest5ch::Board]
+    def self.find(board_name)
+      url = "#{BOARDS_URL}subback/#{board_name}"
+      all.values.flatten.find { |board| board_name == board.name || url == board.url }
+    end
   end
 end

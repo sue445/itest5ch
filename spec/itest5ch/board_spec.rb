@@ -21,4 +21,20 @@ RSpec.describe Itest5ch::Board do
 
     its([0]) { should eq Itest5ch::Board.new("http://itest.5ch.net/subback/kaden", name: "家電製品") }
   end
+
+  describe ".find" do
+    subject { Itest5ch::Board.find(board_name) }
+
+    context "with board name" do
+      let(:board_name) { "スマホアプリ" }
+
+      it { should eq Itest5ch::Board.new("http://itest.5ch.net/subback/applism", name: "スマホアプリ") }
+    end
+
+    context "with board id" do
+      let(:board_name) { "applism" }
+
+      it { should eq Itest5ch::Board.new("http://itest.5ch.net/subback/applism", name: "スマホアプリ") }
+    end
+  end
 end
