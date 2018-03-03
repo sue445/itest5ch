@@ -43,11 +43,11 @@ module Itest5ch
 
     # @param board_url [String] url (PC or Smartphone)
     def self.json_url(board_url)
-      if m = board_url.match(%r{^http://itest\.5ch\.net/subback/(.+?)/?$})
+      if (m = board_url.match(%r{^http://itest\.5ch\.net/subback/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
-      if m = board_url.match(%r{^https://.+\.5ch\.net/(.+?)/?$})
+      if (m = board_url.match(%r{^https://.+\.5ch\.net/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
