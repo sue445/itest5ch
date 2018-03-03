@@ -23,6 +23,22 @@ RSpec.describe Itest5ch::Board do
     its("first.comments_count") { should eq 249 }
   end
 
+  describe ".json_url" do
+    subject { Itest5ch::Board.json_url(url) }
+
+    context "with Smartphone url" do
+      let(:url) { "http://itest.5ch.net/subback/applism/" }
+
+      it { should eq "http://itest.5ch.net/subbacks/applism.json" }
+    end
+
+    context "with PC url" do
+      let(:url) { "https://egg.5ch.net/applism/" }
+
+      it { should eq "http://itest.5ch.net/subbacks/applism.json" }
+    end
+  end
+
   describe ".all" do
     subject { Itest5ch::Board.all }
 
