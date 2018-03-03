@@ -18,7 +18,7 @@ RSpec.describe Itest5ch::Board do
 
     its("first.subdomain")      { should eq "egg" }
     its("first.board")          { should eq "applism" }
-    its("first.dat")            { should eq 1519836119 }
+    its("first.dat")            { should eq 1_519_836_119 }
     its("first.name")           { should eq "【マギレコ】マギアレコード 魔法少女まどか☆マギカ外伝 877周目" }
     its("first.comments_count") { should eq 249 }
   end
