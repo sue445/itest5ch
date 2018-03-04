@@ -69,7 +69,7 @@ module Itest5ch
           number:          number,
           name:            comment[1],
           mail:            comment[2],
-          date:            Time.zone.at(comment[3].to_i),
+          date:            time_at(comment[3].to_i),
           id:              comment[4],
           message:         message,
           pc_url:          "#{pc_url}/#{number}",
@@ -139,6 +139,18 @@ module Itest5ch
       # @return [String] random 10 char string
       def rand
         SecureRandom.hex(5)
+      end
+
+      # @param unixtime [Integer]
+      #
+      # @return [ActiveSupport::TimeWithZone] When `Time.zone` is initialized
+      # @return [Time] When `Time.zone` is not initialized or without activesupport
+      def time_at(unixtime)
+        if Time.respond_to?(:zone) && Time.zone.respond_to?(:at)
+          Time.zone.at(unixtime)
+        else
+          Time.at(unixtime)
+        end
       end
   end
 end
