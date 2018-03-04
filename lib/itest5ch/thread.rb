@@ -129,7 +129,8 @@ module Itest5ch
 
       # @return [Hash]
       def fetch_data
-        get_json("http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}")
+        url = "http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}"
+        get_json(url, referer: smartphone_url)
       end
 
       # @return [String] random 10 char string
