@@ -50,17 +50,17 @@ RSpec.describe Itest5ch::Thread do
       context "with Smartphone url" do
         let(:url) { "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732" }
 
-        its(:subdomain)      { should eq subdomain }
-        its(:board)          { should eq board }
-        its(:dat)            { should eq dat }
+        its(:subdomain) { should eq subdomain }
+        its(:board)     { should eq board }
+        its(:dat)       { should eq dat }
       end
 
       context "with PC url" do
         let(:url) { "http://egg.5ch.net/test/read.cgi/applism/1517988732" }
 
-        its(:subdomain)      { should eq subdomain }
-        its(:board)          { should eq board }
-        its(:dat)            { should eq dat }
+        its(:subdomain) { should eq subdomain }
+        its(:board)     { should eq board }
+        its(:dat)       { should eq dat }
       end
     end
   end
