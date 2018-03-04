@@ -32,12 +32,14 @@ module Itest5ch
     #   @return [String]
     attr_accessor :smartphone_url
 
-    # @param number  [Integer]
-    # @param name    [String]
-    # @param mail    [String]
-    # @param date    [Time]
-    # @param id      [String]
-    # @param message [String]
+    # @param number         [Integer]
+    # @param name           [String]
+    # @param mail           [String]
+    # @param date           [Time]
+    # @param id             [String]
+    # @param message        [String]
+    # @param pc_url         [String]
+    # @param smartphone_url [String]
     def initialize(number:, name:, mail:, date:, id:, message:, pc_url: nil, smartphone_url: nil) # rubocop:disable Metrics/ParameterLists
       @number = number
       @name = name
