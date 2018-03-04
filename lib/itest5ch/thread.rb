@@ -15,9 +15,8 @@ module Itest5ch
     #   @return [Integer]
     attr_accessor :dat
 
-    # @!attribute [rw] name
-    #   @return [String]
-    attr_accessor :name
+    # @!attribute [w] name
+    attr_writer :name
 
     # @!attribute [rw] comments_count
     #   @return [Integer]
@@ -33,7 +32,7 @@ module Itest5ch
     #   @param comments_count [Integer]
     #
     #   @example
-    #     thread = Itest5ch::Thread.new(subdomain: "egg", board: "applism", dat: "1234567890")
+    #     thread = Itest5ch::Thread.new(subdomain: "egg", board: "applism", dat: 1234567890)
     #
     # @overload initialize(url)
     #   Set thread url (PC or SmartPhone)
@@ -62,10 +61,7 @@ module Itest5ch
     end
 
     def comments
-      json_url = "http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}"
-      hash = get_json(json_url)
-
-      hash["comments"].map do |comment|
+      fetch_data["comments"].map do |comment|
         message = CGI.unescapeHTML(comment[6]).gsub("<br>", "\n").lines.map(&:strip).join("\n")
 
         Comment.new(
@@ -89,8 +85,19 @@ module Itest5ch
       "http://#{subdomain}.5ch.net/test/read.cgi/#{board}/#{dat}"
     end
 
+    # @return [String]
+    def name
+      @name ||= fetch_name
+    end
+
+    # @return [String] thread name
+    def fetch_name
+      fetch_data["thread"][5]
+    end
+
     private
 
+      # @param hash [Hash]
       def initialize_with_hash(hash)
         assert_required_keys!(hash, :subdomain, :board, :dat)
 
@@ -101,6 +108,7 @@ module Itest5ch
         @comments_count = hash[:comments_count] || 0
       end
 
+      # @param url [String]
       def initialize_with_string(url)
         if (m = url.match(%r{http://itest\.5ch\.net/(.+)/test/read\.cgi/(.+)/([0-9]+)}))
           @subdomain = m[1]
@@ -119,6 +127,12 @@ module Itest5ch
         raise ArgumentError, "'#{url}' is invalid url format"
       end
 
+      # @return [Hash]
+      def fetch_data
+        get_json("http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}")
+      end
+
+      # @return [String] random 10 char string
       def rand
         SecureRandom.hex(5)
       end
