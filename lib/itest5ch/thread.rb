@@ -63,14 +63,17 @@ module Itest5ch
     def comments
       fetch_data["comments"].map do |comment|
         message = CGI.unescapeHTML(comment[6]).gsub("<br>", "\n").lines.map(&:strip).join("\n")
+        number = comment[0]
 
         Comment.new(
-          number:  comment[0],
-          name:    comment[1],
-          mail:    comment[2],
-          date:    Time.zone.at(comment[3].to_i),
-          id:      comment[4],
-          message: message,
+          number:          number,
+          name:            comment[1],
+          mail:            comment[2],
+          date:            Time.zone.at(comment[3].to_i),
+          id:              comment[4],
+          message:         message,
+          pc_url:          "#{pc_url}/#{number}",
+          smartphone_url:  "#{smartphone_url}/#{number}",
         )
       end
     end
