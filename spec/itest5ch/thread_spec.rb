@@ -134,4 +134,16 @@ RSpec.describe Itest5ch::Thread do
       its(:message) { should eq message }
     end
   end
+
+  describe "#smartphone_url" do
+    subject { thread.smartphone_url }
+
+    it { should eq "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732" }
+  end
+
+  describe "#pc_url" do
+    subject { thread.pc_url }
+
+    it { should eq "http://egg.5ch.net/test/read.cgi/applism/1517988732" }
+  end
 end
