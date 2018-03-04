@@ -1,6 +1,4 @@
 module Itest5ch
-  require "json"
-
   class Thread
     include HtmlMethods
 
@@ -44,7 +42,7 @@ module Itest5ch
 
     def comments
       json_url = "http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}"
-      hash = JSON.parse(get_html(json_url))
+      hash = get_json(json_url)
 
       hash["comments"].map do |comment|
         message = CGI.unescapeHTML(comment[6]).gsub("<br>", "\n").lines.map(&:strip).join("\n")
