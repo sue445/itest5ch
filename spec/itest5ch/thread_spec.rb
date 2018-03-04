@@ -12,6 +12,56 @@ RSpec.describe Itest5ch::Thread do
   let(:dat)       { 1_517_988_732 }
   let(:rand)      { "1234567890" }
 
+  describe "#initialize" do
+    let(:subdomain)      { "egg" }
+    let(:board)          { "applism" }
+    let(:dat)            { 1_517_988_732 }
+    let(:name)           { "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
+    let(:comments_count) { 445 }
+
+    context "with keyword args" do
+      subject do
+        Itest5ch::Thread.new(
+          subdomain:      subdomain,
+          board:          board,
+          dat:            dat,
+          name:           name,
+          comments_count: comments_count,
+        )
+      end
+
+      its(:subdomain)      { should eq subdomain }
+      its(:board)          { should eq board }
+      its(:dat)            { should eq dat }
+      its(:name)           { should eq name }
+      its(:comments_count) { should eq comments_count }
+    end
+
+    context "with string arg" do
+      subject { Itest5ch::Thread.new(url) }
+
+      context "with Smartphone url" do
+        let(:url) { "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732" }
+
+        its(:subdomain)      { should eq subdomain }
+        its(:board)          { should eq board }
+        its(:dat)            { should eq dat }
+        its(:name)           { should eq nil }
+        its(:comments_count) { should eq nil }
+      end
+
+      context "with PC url" do
+        let(:url) { "http://egg.5ch.net/test/read.cgi/applism/1517988732" }
+
+        its(:subdomain)      { should eq subdomain }
+        its(:board)          { should eq board }
+        its(:dat)            { should eq dat }
+        its(:name)           { should eq nil }
+        its(:comments_count) { should eq nil }
+      end
+    end
+  end
+
   describe "#comments" do
     subject(:comments) { thread.comments }
 
