@@ -3,7 +3,9 @@ require "itest5ch/html_methods"
 require "itest5ch/board"
 require "itest5ch/config"
 require "itest5ch/thread"
+require "itest5ch/comment"
 require "hpricot"
+require "active_support/time"
 
 module Itest5ch
   # @return [Itest5ch::Config]

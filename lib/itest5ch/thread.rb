@@ -1,5 +1,9 @@
 module Itest5ch
+  require "json"
+
   class Thread
+    include HtmlMethods
+
     # @!attribute [rw] subdomain
     #   @return [String]
     attr_accessor :subdomain
@@ -37,5 +41,29 @@ module Itest5ch
       other.is_a?(Thread) && subdomain == other.subdomain && board == other.board &&
         dat == other.dat && name == other.name && comments_count == other.comments_count
     end
+
+    def comments
+      json_url = "http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}"
+      hash = JSON.parse(get_html(json_url))
+
+      hash["comments"].map do |comment|
+        message = CGI.unescapeHTML(comment[6]).gsub("<br>", "\n").lines.map(&:strip).join("\n")
+
+        Comment.new(
+          number:  comment[0],
+          name:    comment[1],
+          mail:    comment[2],
+          date:    Time.zone.at(comment[3].to_i),
+          id:      comment[4],
+          message: message,
+        )
+      end
+    end
+
+    private
+
+      def rand
+        SecureRandom.hex(5)
+      end
   end
 end
