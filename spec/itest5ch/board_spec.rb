@@ -7,7 +7,7 @@ RSpec.describe Itest5ch::Board do
   let(:board) { Itest5ch::Board.new("http://itest.5ch.net/subback/applism") }
 
   describe "#threads" do
-    subject { board.threads }
+    subject(:threads) { board.threads }
 
     before do
       stub_request(:get, "http://itest.5ch.net/subbacks/applism.json").
@@ -16,11 +16,15 @@ RSpec.describe Itest5ch::Board do
 
     its(:count) { should eq 632 }
 
-    its("first.subdomain")      { should eq "egg" }
-    its("first.board")          { should eq "applism" }
-    its("first.dat")            { should eq 1_519_836_119 }
-    its("first.name")           { should eq "【マギレコ】マギアレコード 魔法少女まどか☆マギカ外伝 877周目" }
-    its("first.comments_count") { should eq 249 }
+    describe "#[0]" do
+      subject { threads[0] }
+
+      its(:subdomain)      { should eq "egg" }
+      its(:board)          { should eq "applism" }
+      its(:dat)            { should eq 1_519_836_119 }
+      its(:name)           { should eq "【マギレコ】マギアレコード 魔法少女まどか☆マギカ外伝 877周目" }
+      its(:comments_count) { should eq 249 }
+    end
   end
 
   describe ".json_url" do
@@ -49,13 +53,17 @@ RSpec.describe Itest5ch::Board do
   end
 
   describe ".find_category_boards" do
-    subject { Itest5ch::Board.find_category_boards(category_name) }
+    subject(:boards) { Itest5ch::Board.find_category_boards(category_name) }
 
     let(:category_name) { "家電製品" }
     its(:count) { should eq 23 }
 
-    its("first.url")  { should eq "http://itest.5ch.net/subback/kaden" }
-    its("first.name") { should eq "家電製品" }
+    describe "[0]" do
+      subject { boards[0] }
+
+      its(:url)  { should eq "http://itest.5ch.net/subback/kaden" }
+      its(:name) { should eq "家電製品" }
+    end
   end
 
   describe ".find" do
