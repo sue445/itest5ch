@@ -48,30 +48,9 @@ module Itest5ch
     def initialize(args)
       case args
       when Hash
-        assert_required_keys!(args, :subdomain, :board, :dat)
-
-        @subdomain      = args[:subdomain]
-        @board          = args[:board]
-        @dat            = args[:dat]
-        @name           = args[:name]
-        @comments_count = args[:comments_count] || 0
+        initialize_with_hash(args)
       when String
-        if (m = args.match(%r{http://itest\.5ch\.net/(.+)/test/read\.cgi/(.+)/([0-9]+)}))
-          @subdomain = m[1]
-          @board     = m[2]
-          @dat       = m[3].to_i
-          return
-        end
-
-        if (m = args.match(%r{http://(.+)\.5ch\.net/test/read\.cgi/(.+)/([0-9]+)}))
-          @subdomain = m[1]
-          @board     = m[2]
-          @dat       = m[3].to_i
-          return
-        end
-
-        raise ArgumentError, "'#{args}' is invalid url format"
-
+        initialize_with_string(args)
       else
         raise ArgumentError, "args is either Hash or String is required"
       end
@@ -101,6 +80,34 @@ module Itest5ch
     end
 
     private
+
+      def initialize_with_hash(hash)
+        assert_required_keys!(hash, :subdomain, :board, :dat)
+
+        @subdomain      = hash[:subdomain]
+        @board          = hash[:board]
+        @dat            = hash[:dat]
+        @name           = hash[:name]
+        @comments_count = hash[:comments_count] || 0
+      end
+
+      def initialize_with_string(url)
+        if (m = url.match(%r{http://itest\.5ch\.net/(.+)/test/read\.cgi/(.+)/([0-9]+)}))
+          @subdomain = m[1]
+          @board     = m[2]
+          @dat       = m[3].to_i
+          return
+        end
+
+        if (m = url.match(%r{http://(.+)\.5ch\.net/test/read\.cgi/(.+)/([0-9]+)}))
+          @subdomain = m[1]
+          @board     = m[2]
+          @dat       = m[3].to_i
+          return
+        end
+
+        raise ArgumentError, "'#{url}' is invalid url format"
+      end
 
       def rand
         SecureRandom.hex(5)
