@@ -1,4 +1,11 @@
 RSpec.describe Itest5ch::Thread do
+  before do
+    allow(thread).to receive(:rand) { rand }
+
+    stub_request(:get, "http://itest.5ch.net/public/newapi/client.php?board=#{board}&dat=#{dat}&rand=#{rand}&subdomain=#{subdomain}").
+      to_return(status: 200, body: fixture("applism_1517988732.json"))
+  end
+
   let(:thread) do
     Itest5ch::Thread.new(
       subdomain: subdomain,
@@ -46,8 +53,6 @@ RSpec.describe Itest5ch::Thread do
         its(:subdomain)      { should eq subdomain }
         its(:board)          { should eq board }
         its(:dat)            { should eq dat }
-        its(:name)           { should eq nil }
-        its(:comments_count) { should eq nil }
       end
 
       context "with PC url" do
@@ -56,21 +61,12 @@ RSpec.describe Itest5ch::Thread do
         its(:subdomain)      { should eq subdomain }
         its(:board)          { should eq board }
         its(:dat)            { should eq dat }
-        its(:name)           { should eq nil }
-        its(:comments_count) { should eq nil }
       end
     end
   end
 
   describe "#comments" do
     subject(:comments) { thread.comments }
-
-    before do
-      allow(thread).to receive(:rand) { rand }
-
-      stub_request(:get, "http://itest.5ch.net/public/newapi/client.php?board=#{board}&dat=#{dat}&rand=#{rand}&subdomain=#{subdomain}").
-        to_return(status: 200, body: fixture("applism_1517988732.json"))
-    end
 
     its(:count) { should eq 1_002 }
 
@@ -145,5 +141,11 @@ RSpec.describe Itest5ch::Thread do
     subject { thread.pc_url }
 
     it { should eq "http://egg.5ch.net/test/read.cgi/applism/1517988732" }
+  end
+
+  describe "#fetch_name" do
+    subject { thread.fetch_name }
+
+    it { should eq "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
   end
 end

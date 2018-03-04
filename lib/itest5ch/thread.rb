@@ -15,9 +15,8 @@ module Itest5ch
     #   @return [Integer]
     attr_accessor :dat
 
-    # @!attribute [rw] name
-    #   @return [String]
-    attr_accessor :name
+    # @!attribute [w] name
+    attr_writer :name
 
     # @!attribute [rw] comments_count
     #   @return [Integer]
@@ -62,10 +61,7 @@ module Itest5ch
     end
 
     def comments
-      json_url = "http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}"
-      hash = get_json(json_url)
-
-      hash["comments"].map do |comment|
+      fetch_data["comments"].map do |comment|
         message = CGI.unescapeHTML(comment[6]).gsub("<br>", "\n").lines.map(&:strip).join("\n")
 
         Comment.new(
@@ -87,6 +83,16 @@ module Itest5ch
     # @return [String]
     def pc_url
       "http://#{subdomain}.5ch.net/test/read.cgi/#{board}/#{dat}"
+    end
+
+    # @return [String]
+    def name
+      @name ||= fetch_name
+    end
+
+    # @return [String] thread name
+    def fetch_name
+      fetch_data["thread"][5]
     end
 
     private
@@ -117,6 +123,10 @@ module Itest5ch
         end
 
         raise ArgumentError, "'#{url}' is invalid url format"
+      end
+
+      def fetch_data
+        get_json("http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}")
       end
 
       def rand
