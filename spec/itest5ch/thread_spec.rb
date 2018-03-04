@@ -3,7 +3,7 @@ RSpec.describe Itest5ch::Thread do
     Itest5ch::Thread.new(
       subdomain: subdomain,
       board:     board,
-      dat:       dat.to_i,
+      dat:       dat,
     )
   end
 
