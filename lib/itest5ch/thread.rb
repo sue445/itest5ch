@@ -60,6 +60,7 @@ module Itest5ch
         dat == other.dat && name == other.name && comments_count == other.comments_count
     end
 
+    # @return [Array<Itest5ch::Comment>]
     def comments
       fetch_data["comments"].map do |comment|
         message = CGI.unescapeHTML(comment[6]).gsub("<br>", "\n").lines.map(&:strip).join("\n")
