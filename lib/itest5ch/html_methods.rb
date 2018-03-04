@@ -1,6 +1,7 @@
 module Itest5ch
   module HtmlMethods
     require "open-uri"
+    require "json"
 
     # @param url [String]
     # @param referer [String]
@@ -12,6 +13,14 @@ module Itest5ch
       options["Referer"] = referer if referer
 
       open(url, options).read
+    end
+
+    # @param url [String]
+    # @param referer [String]
+    #
+    # @return [Hash]
+    def get_json(url, referer: nil)
+      JSON.parse(get_html(url, referer: referer))
     end
   end
 end

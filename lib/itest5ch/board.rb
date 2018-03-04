@@ -1,6 +1,4 @@
 module Itest5ch
-  require "json"
-
   class Board
     include HtmlMethods
     extend HtmlMethods
@@ -28,7 +26,7 @@ module Itest5ch
 
     # @return [Array<Itest5ch::Thread>]
     def threads
-      hash = JSON.parse(get_html(Board.json_url(url), referer: url))
+      hash = get_json(Board.json_url(url), referer: url)
       hash["threads"].map do |thread|
         board, dat = thread[3].split("/", 2)
         Itest5ch::Thread.new(
