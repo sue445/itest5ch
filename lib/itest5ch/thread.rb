@@ -32,7 +32,7 @@ module Itest5ch
     #   @param comments_count [Integer]
     #
     #   @example
-    #     thread = Itest5ch::Thread.new(subdomain: "egg", board: "applism", dat: "1234567890")
+    #     thread = Itest5ch::Thread.new(subdomain: "egg", board: "applism", dat: 1234567890)
     #
     # @overload initialize(url)
     #   Set thread url (PC or SmartPhone)
@@ -97,6 +97,7 @@ module Itest5ch
 
     private
 
+      # @param hash [Hash]
       def initialize_with_hash(hash)
         assert_required_keys!(hash, :subdomain, :board, :dat)
 
@@ -107,6 +108,7 @@ module Itest5ch
         @comments_count = hash[:comments_count] || 0
       end
 
+      # @param url [String]
       def initialize_with_string(url)
         if (m = url.match(%r{http://itest\.5ch\.net/(.+)/test/read\.cgi/(.+)/([0-9]+)}))
           @subdomain = m[1]
@@ -125,10 +127,12 @@ module Itest5ch
         raise ArgumentError, "'#{url}' is invalid url format"
       end
 
+      # @return [Hash]
       def fetch_data
         get_json("http://itest.5ch.net/public/newapi/client.php?subdomain=#{subdomain}&board=#{board}&dat=#{dat}&rand=#{rand}")
       end
 
+      # @return [String] random 10 char string
       def rand
         SecureRandom.hex(5)
       end
