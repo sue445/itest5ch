@@ -79,6 +79,16 @@ module Itest5ch
       end
     end
 
+    # @return [String]
+    def smartphone_url
+      "http://itest.5ch.net/#{subdomain}/test/read.cgi/#{board}/#{dat}"
+    end
+
+    # @return [String]
+    def pc_url
+      "http://#{subdomain}.5ch.net/test/read.cgi/#{board}/#{dat}"
+    end
+
     private
 
       def initialize_with_hash(hash)
