@@ -111,6 +111,8 @@ RSpec.describe Itest5ch::Thread do
       its(:date)    { should eq "2018-02-07 16:32:12".in_time_zone }
       its(:id)      { should eq "T+wBkVi90" }
       its(:message) { should eq message }
+      its(:pc_url)         { should eq "http://egg.5ch.net/test/read.cgi/applism/1517988732/1" }
+      its(:smartphone_url) { should eq "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732/1" }
     end
 
     describe "[29]" do
@@ -128,6 +130,8 @@ RSpec.describe Itest5ch::Thread do
       its(:date)    { should eq "2018-02-09 10:12:02".in_time_zone }
       its(:id)      { should eq "nlJjIXKK0" }
       its(:message) { should eq message }
+      its(:pc_url)         { should eq "http://egg.5ch.net/test/read.cgi/applism/1517988732/30" }
+      its(:smartphone_url) { should eq "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732/30" }
     end
   end
 
