@@ -50,10 +50,12 @@ RSpec.describe Itest5ch::Thread do
       using RSpec::Parameterized::TableSyntax
 
       where(:url, :subdomain, :board, :dat) do
-        "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732"  | "egg" | "applism" | 1_517_988_732
-        "https://itest.5ch.net/egg/test/read.cgi/applism/1517988732" | "egg" | "applism" | 1_517_988_732
-        "http://egg.5ch.net/test/read.cgi/applism/1517988732"        | "egg" | "applism" | 1_517_988_732
-        "https://egg.5ch.net/test/read.cgi/applism/1517988732"       | "egg" | "applism" | 1_517_988_732
+        "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732"   | "egg" | "applism" | 1_517_988_732
+        "http://egg.5ch.net/test/read.cgi/applism/1517988732"         | "egg" | "applism" | 1_517_988_732
+        "https://itest.5ch.net/egg/test/read.cgi/applism/1517988732"  | "egg" | "applism" | 1_517_988_732
+        "https://egg.5ch.net/test/read.cgi/applism/1517988732"        | "egg" | "applism" | 1_517_988_732
+        "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732/1" | "egg" | "applism" | 1_517_988_732
+        "http://egg.5ch.net/test/read.cgi/applism/1517988732/1"       | "egg" | "applism" | 1_517_988_732
       end
 
       with_them do
