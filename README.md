@@ -93,6 +93,28 @@ comments = thread.comments
 Itest5ch.config.user_agent = "XXXX"
 ```
 
+* `user_agent` : User Agent
+
+## ProTip
+When `Time.zone` is initialized, `Itest5ch::Comment#date` returns `ActiveSupport::TimeWithZone` (requirements `activesupport`)
+
+```ruby
+comment.date
+#=> 2018-03-06 12:34:56 +0900
+comment.date.class
+=> Time
+```
+
+```ruby
+require "active_support/time"
+Time.zone = "Tokyo"
+
+comment.date
+#=> Tue, 06 Mar 2018 12:34:56 JST +09:00
+comment.date.class
+#=> ActiveSupport::TimeWithZone
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
