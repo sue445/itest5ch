@@ -75,12 +75,12 @@ threads = board.threads
 #### Get a thread
 ```ruby
 # with PC url
-thread = Itest5ch::Thread.new("http://egg.5ch.net/test/read.cgi/smartphone/1520158116")
+thread = Itest5ch::Thread.new("http://egg.5ch.net/test/read.cgi/smartphone/0000000000")
 
 # or
 
 # with Smartphone url
-thread = Itest5ch::Thread.new("http://itest.5ch.net/egg/test/read.cgi/smartphone/1520158116")
+thread = Itest5ch::Thread.new("http://itest.5ch.net/egg/test/read.cgi/smartphone/0000000000")
 ```
 
 ### [Comment](lib/itest5ch/comment.rb)
