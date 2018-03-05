@@ -117,14 +117,14 @@ module Itest5ch
 
       # @param url [String]
       def initialize_with_string(url)
-        if (m = url.match(%r{http://itest\.5ch\.net/(.+)/test/read\.cgi/(.+)/([0-9]+)}))
+        if (m = url.match(%r{https?://itest\.5ch\.net/(.+)/test/read\.cgi/([^/]+)/([0-9]+)}))
           @subdomain = m[1]
           @board     = m[2]
           @dat       = m[3].to_i
           return
         end
 
-        if (m = url.match(%r{http://(.+)\.5ch\.net/test/read\.cgi/(.+)/([0-9]+)}))
+        if (m = url.match(%r{https?://(.+)\.5ch\.net/test/read\.cgi/([^/]+)/([0-9]+)}))
           @subdomain = m[1]
           @board     = m[2]
           @dat       = m[3].to_i

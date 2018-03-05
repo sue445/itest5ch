@@ -47,17 +47,18 @@ RSpec.describe Itest5ch::Thread do
     context "with string arg" do
       subject { Itest5ch::Thread.new(url) }
 
-      context "with Smartphone url" do
-        let(:url) { "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732" }
+      using RSpec::Parameterized::TableSyntax
 
-        its(:subdomain) { should eq subdomain }
-        its(:board)     { should eq board }
-        its(:dat)       { should eq dat }
+      where(:url, :subdomain, :board, :dat) do
+        "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732"   | "egg" | "applism" | 1_517_988_732
+        "http://egg.5ch.net/test/read.cgi/applism/1517988732"         | "egg" | "applism" | 1_517_988_732
+        "https://itest.5ch.net/egg/test/read.cgi/applism/1517988732"  | "egg" | "applism" | 1_517_988_732
+        "https://egg.5ch.net/test/read.cgi/applism/1517988732"        | "egg" | "applism" | 1_517_988_732
+        "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732/1" | "egg" | "applism" | 1_517_988_732
+        "http://egg.5ch.net/test/read.cgi/applism/1517988732/1"       | "egg" | "applism" | 1_517_988_732
       end
 
-      context "with PC url" do
-        let(:url) { "http://egg.5ch.net/test/read.cgi/applism/1517988732" }
-
+      with_them do
         its(:subdomain) { should eq subdomain }
         its(:board)     { should eq board }
         its(:dat)       { should eq dat }
