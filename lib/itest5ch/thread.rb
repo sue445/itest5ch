@@ -1,4 +1,7 @@
 module Itest5ch
+  require "securerandom"
+  require "cgi"
+
   class Thread
     include HtmlMethods
     include AssertMethods
