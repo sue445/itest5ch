@@ -102,7 +102,7 @@ When `Time.zone` is initialized, `Itest5ch::Comment#date` returns `ActiveSupport
 comment.date
 #=> 2018-03-06 12:34:56 +0900
 comment.date.class
-=> Time
+#=> Time
 ```
 
 ```ruby
