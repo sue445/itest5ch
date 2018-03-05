@@ -96,7 +96,7 @@ Itest5ch.config.user_agent = "XXXX"
 * `user_agent` : User Agent
 
 ## ProTip
-When `Time.zone` is initialized, `Itest5ch::Comment#date` returns `ActiveSupport::TimeWithZone` (requirements `activesupport`)
+When `Time.zone` is initialized, `Itest5ch::Comment#date` returns `ActiveSupport::TimeWithZone` instead of `Time` (requirements `activesupport`)
 
 ```ruby
 comment.date
