@@ -31,16 +31,17 @@ RSpec.describe Itest5ch::Board do
   describe "#json_url" do
     subject { board.json_url }
 
-    context "with Smartphone url" do
-      let(:board_url) { "http://itest.5ch.net/subback/applism/" }
+    using RSpec::Parameterized::TableSyntax
 
-      it { should eq "http://itest.5ch.net/subbacks/applism.json" }
+    where(:board_url, :json_url) do
+      "http://itest.5ch.net/subback/applism/"  | "http://itest.5ch.net/subbacks/applism.json"
+      "http://egg.5ch.net/applism/"            | "http://itest.5ch.net/subbacks/applism.json"
+      "https://itest.5ch.net/subback/applism/" | "http://itest.5ch.net/subbacks/applism.json"
+      "https://egg.5ch.net/applism/"           | "http://itest.5ch.net/subbacks/applism.json"
     end
 
-    context "with PC url" do
-      let(:board_url) { "https://egg.5ch.net/applism/" }
-
-      it { should eq "http://itest.5ch.net/subbacks/applism.json" }
+    with_them do
+      it { should eq json_url }
     end
   end
 

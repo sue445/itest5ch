@@ -38,11 +38,11 @@ module Itest5ch
 
     # @return [String]
     def json_url
-      if (m = url.match(%r{^http://itest\.5ch\.net/subback/(.+?)/?$}))
+      if (m = url.match(%r{^https?://itest\.5ch\.net/subback/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
-      if (m = url.match(%r{^https://.+\.5ch\.net/(.+?)/?$}))
+      if (m = url.match(%r{^https?://.+\.5ch\.net/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
