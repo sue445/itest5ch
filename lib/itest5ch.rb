@@ -1,13 +1,14 @@
 require "itest5ch/version"
-require "itest5ch/html_methods"
-require "itest5ch/assert_methods"
-require "itest5ch/board"
-require "itest5ch/config"
-require "itest5ch/thread"
-require "itest5ch/comment"
 require "hpricot"
 
 module Itest5ch
+  autoload :AssertMethods, "itest5ch/assert_methods"
+  autoload :Board,         "itest5ch/board"
+  autoload :Comment,       "itest5ch/comment"
+  autoload :Config,        "itest5ch/config"
+  autoload :HtmlMethods,   "itest5ch/html_methods"
+  autoload :Thread,        "itest5ch/thread"
+
   # @return [Itest5ch::Config]
   def self.config
     @config ||= Config.new
