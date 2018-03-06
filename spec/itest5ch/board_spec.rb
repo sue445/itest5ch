@@ -16,7 +16,7 @@ RSpec.describe Itest5ch::Board do
 
     its(:count) { should eq 632 }
 
-    describe "#[0]" do
+    describe "[0]" do
       subject { threads[0] }
 
       its(:subdomain)      { should eq "egg" }
