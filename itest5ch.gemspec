@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["sue445"]
   spec.email         = ["sue445@sue445.net"]
 
-  spec.summary       = "5ch (a.k.a. 2ch) reader via http://itest.5ch.net/"
-  spec.description   = "5ch (a.k.a. 2ch) reader via http://itest.5ch.net/"
+  spec.summary       = "5ch (a.k.a. 2ch) reader via itest.5ch.net"
+  spec.description   = "5ch (a.k.a. 2ch) reader via itest.5ch.net"
   spec.homepage      = "https://github.com/sue445/itest5ch"
   spec.license       = "MIT"
 
