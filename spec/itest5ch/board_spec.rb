@@ -1,10 +1,11 @@
 RSpec.describe Itest5ch::Board do
   before do
-    stub_request(:get, Itest5ch::Board::BOARDS_URL).
+    stub_request(:get, Itest5ch::BoardListPage::BOARDS_URL).
       to_return(status: 200, body: fixture("index.html"))
   end
 
-  let(:board) { Itest5ch::Board.new("http://itest.5ch.net/subback/applism") }
+  let(:board)     { Itest5ch::Board.new(board_url) }
+  let(:board_url) { "http://itest.5ch.net/subback/applism" }
 
   describe "#threads" do
     subject(:threads) { board.threads }
@@ -16,7 +17,7 @@ RSpec.describe Itest5ch::Board do
 
     its(:count) { should eq 632 }
 
-    describe "#[0]" do
+    describe "[0]" do
       subject { threads[0] }
 
       its(:subdomain)      { should eq "egg" }
@@ -27,29 +28,21 @@ RSpec.describe Itest5ch::Board do
     end
   end
 
-  describe ".json_url" do
-    subject { Itest5ch::Board.json_url(url) }
+  describe "#json_url" do
+    subject { board.json_url }
 
-    context "with Smartphone url" do
-      let(:url) { "http://itest.5ch.net/subback/applism/" }
+    using RSpec::Parameterized::TableSyntax
 
-      it { should eq "http://itest.5ch.net/subbacks/applism.json" }
+    where(:board_url, :json_url) do
+      "http://itest.5ch.net/subback/applism/"  | "http://itest.5ch.net/subbacks/applism.json"
+      "http://egg.5ch.net/applism/"            | "http://itest.5ch.net/subbacks/applism.json"
+      "https://itest.5ch.net/subback/applism/" | "http://itest.5ch.net/subbacks/applism.json"
+      "https://egg.5ch.net/applism/"           | "http://itest.5ch.net/subbacks/applism.json"
     end
 
-    context "with PC url" do
-      let(:url) { "https://egg.5ch.net/applism/" }
-
-      it { should eq "http://itest.5ch.net/subbacks/applism.json" }
+    with_them do
+      it { should eq json_url }
     end
-  end
-
-  describe ".all" do
-    subject { Itest5ch::Board.all }
-
-    its(:count) { should eq 47 }
-
-    it { expect(subject["家電製品"].count).to eq 23 }
-    it { expect(subject["家電製品"]).to include(Itest5ch::Board.new("http://itest.5ch.net/subback/applism", name: "スマホアプリ")) }
   end
 
   describe ".find_category_boards" do

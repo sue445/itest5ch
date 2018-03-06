@@ -1,9 +1,6 @@
 module Itest5ch
   class Board
     include HtmlMethods
-    extend HtmlMethods
-
-    BOARDS_URL = "http://itest.5ch.net/".freeze
 
     # @!attribute [rw] url
     #   @return [String]
@@ -26,7 +23,7 @@ module Itest5ch
 
     # @return [Array<Itest5ch::Thread>]
     def threads
-      hash = get_json(Board.json_url(url), referer: url)
+      hash = get_json(json_url, referer: url)
       hash["threads"].map do |thread|
         board, dat = thread[3].split("/", 2)
         Itest5ch::Thread.new(
@@ -39,45 +36,25 @@ module Itest5ch
       end
     end
 
-    # @param board_url [String] url (PC or Smartphone)
-    def self.json_url(board_url)
-      if (m = board_url.match(%r{^http://itest\.5ch\.net/subback/(.+?)/?$}))
+    # @return [String]
+    def json_url
+      if (m = url.match(%r{^https?://itest\.5ch\.net/subback/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
-      if (m = board_url.match(%r{^https://.+\.5ch\.net/(.+?)/?$}))
+      if (m = url.match(%r{^https?://.+\.5ch\.net/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
-      raise "Unknown url: #{board_url}"
+      raise "Unknown url: #{url}"
     end
 
     # Get all boards
     #
     # @return [Hash<String, Array<Itest5ch::Board>>] key: category name, value: boards
     def self.all
-      doc = Hpricot(get_html(BOARDS_URL))
-
-      doc.search("//div[@id='bbsmenu']//ul[@class='pure-menu-list']").
-        reject { |ul| ul["id"] == "history" }.each_with_object({}) do |ul, categories|
-
-        category_name = ul.at("/li[@class='pure-menu-item pure-menu-selected']").inner_text.strip
-        categories[category_name] = get_boards(ul)
-      end
+      BoardListPage.new.all
     end
-
-    def self.get_boards(ul)
-      ul.search("/li").
-        select { |li| li["class"].include?("pure-menu-item") && !li["class"].include?("pure-menu-selected") }.
-        each_with_object([]) do |li, boards|
-
-        url = URI.join(BOARDS_URL, li.at("/a")["href"]).to_s
-        name = li.inner_text.strip
-
-        boards << Board.new(url, name: name)
-      end
-    end
-    private_class_method :get_boards
 
     # @param category_name [String]
     #
@@ -90,7 +67,7 @@ module Itest5ch
     #
     # @return [Itest5ch::Board]
     def self.find(board_name)
-      url = "#{BOARDS_URL}subback/#{board_name}"
+      url = "#{Itest5ch::BoardListPage::BOARDS_URL}subback/#{board_name}"
       all.values.flatten.find { |board| board_name == board.name || url == board.url }
     end
   end
