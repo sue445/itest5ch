@@ -23,7 +23,7 @@ module Itest5ch
 
     # @return [Array<Itest5ch::Thread>]
     def threads
-      hash = get_json(Board.json_url(url), referer: url)
+      hash = get_json(json_url, referer: url)
       hash["threads"].map do |thread|
         board, dat = thread[3].split("/", 2)
         Itest5ch::Thread.new(
@@ -36,17 +36,17 @@ module Itest5ch
       end
     end
 
-    # @param board_url [String] url (PC or Smartphone)
-    def self.json_url(board_url)
-      if (m = board_url.match(%r{^http://itest\.5ch\.net/subback/(.+?)/?$}))
+    # @return [String]
+    def json_url
+      if (m = url.match(%r{^http://itest\.5ch\.net/subback/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
-      if (m = board_url.match(%r{^https://.+\.5ch\.net/(.+?)/?$}))
+      if (m = url.match(%r{^https://.+\.5ch\.net/(.+?)/?$}))
         return "http://itest.5ch.net/subbacks/#{m[1]}.json"
       end
 
-      raise "Unknown url: #{board_url}"
+      raise "Unknown url: #{url}"
     end
 
     # Get all boards

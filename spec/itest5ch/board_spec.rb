@@ -4,7 +4,8 @@ RSpec.describe Itest5ch::Board do
       to_return(status: 200, body: fixture("index.html"))
   end
 
-  let(:board) { Itest5ch::Board.new("http://itest.5ch.net/subback/applism") }
+  let(:board)     { Itest5ch::Board.new(board_url) }
+  let(:board_url) { "http://itest.5ch.net/subback/applism" }
 
   describe "#threads" do
     subject(:threads) { board.threads }
@@ -27,17 +28,17 @@ RSpec.describe Itest5ch::Board do
     end
   end
 
-  describe ".json_url" do
-    subject { Itest5ch::Board.json_url(url) }
+  describe "#json_url" do
+    subject { board.json_url }
 
     context "with Smartphone url" do
-      let(:url) { "http://itest.5ch.net/subback/applism/" }
+      let(:board_url) { "http://itest.5ch.net/subback/applism/" }
 
       it { should eq "http://itest.5ch.net/subbacks/applism.json" }
     end
 
     context "with PC url" do
-      let(:url) { "https://egg.5ch.net/applism/" }
+      let(:board_url) { "https://egg.5ch.net/applism/" }
 
       it { should eq "http://itest.5ch.net/subbacks/applism.json" }
     end
