@@ -47,6 +47,8 @@ module Itest5ch
     #
     #   @example with PC url
     #     thread = Itest5ch::Thread.new("http://egg.5ch.net/test/read.cgi/applism/1234567890")
+    #
+    # @raise [ArgumentError] `arg` is not either Hash and String
     def initialize(args)
       case args
       when Hash
@@ -58,6 +60,9 @@ module Itest5ch
       end
     end
 
+    # @param other [Itest5ch::Thread]
+    #
+    # @return [Boolean]
     def ==(other)
       other.is_a?(Thread) && subdomain == other.subdomain && board == other.board &&
         dat == other.dat && name == other.name && comments_count == other.comments_count

@@ -17,6 +17,9 @@ module Itest5ch
       @name = name
     end
 
+    # @param other [Itest5ch::Board]
+    #
+    # @return [Boolean]
     def ==(other)
       other.is_a?(Board) && url == other.url && name == other.name
     end
