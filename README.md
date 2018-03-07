@@ -43,7 +43,7 @@ category_boards = Itest5ch::Board.all
    #<Itest5ch::Board:0x00007f821c5e2ba8 @name="初心者の質問", @url="http://itest.5ch.net/subback/qa">],
 ```
 
-#### Get boards of of category
+#### Get boards of a category
 
 ```ruby
 boards = Itest5ch::Board.find_category_boards("おすすめ")
