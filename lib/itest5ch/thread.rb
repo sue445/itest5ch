@@ -3,7 +3,7 @@ module Itest5ch
   require "cgi"
 
   class Thread
-    include HtmlMethods
+    include HttpMethods
     include AssertMethods
 
     # @!attribute [rw] subdomain
