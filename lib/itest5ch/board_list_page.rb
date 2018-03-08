@@ -1,6 +1,6 @@
 module Itest5ch
   class BoardListPage
-    include HtmlMethods
+    include HttpMethods
 
     BOARDS_URL = "http://itest.5ch.net/".freeze
 

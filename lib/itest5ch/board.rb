@@ -1,6 +1,6 @@
 module Itest5ch
   class Board
-    include HtmlMethods
+    include HttpMethods
 
     # @!attribute [rw] url
     #   @return [String]

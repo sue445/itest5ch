@@ -1,5 +1,5 @@
 module Itest5ch
-  module HtmlMethods
+  module HttpMethods
     require "open-uri"
     require "json"
 
