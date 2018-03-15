@@ -28,21 +28,21 @@ module Itest5ch
     #   @return [Itest5ch::Thread]
     attr_accessor :thread
 
-    # @param number         [Integer]
-    # @param name           [String]
-    # @param mail           [String]
-    # @param date           [Time]
-    # @param id             [String]
-    # @param message        [String]
-    # @param thread         [Itest5ch::Thread]
+    # @param number  [Integer]
+    # @param name    [String]
+    # @param mail    [String]
+    # @param date    [Time]
+    # @param id      [String]
+    # @param message [String]
+    # @param thread  [Itest5ch::Thread]
     def initialize(number:, name:, mail:, date:, id:, message:, thread:) # rubocop:disable Metrics/ParameterLists
-      @number = number
-      @name = name
-      @mail = mail
-      @date = date
-      @id = id
+      @number  = number
+      @name    = name
+      @mail    = mail
+      @date    = date
+      @id      = id
       @message = message
-      @thread = thread
+      @thread  = thread
     end
 
     # @return [Array<Integer>]

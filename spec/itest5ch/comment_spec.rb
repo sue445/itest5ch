@@ -8,20 +8,20 @@ RSpec.describe Itest5ch::Comment do
     )
   end
 
-  let(:subdomain)      { "egg" }
-  let(:board)          { "applism" }
-  let(:dat)            { 1_517_988_732 }
-  let(:name)           { "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
+  let(:subdomain) { "egg" }
+  let(:board)     { "applism" }
+  let(:dat)       { 1_517_988_732 }
+  let(:name)      { "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
 
   let(:comment) do
     Itest5ch::Comment.new(
-      number: 1,
-      name: "7743",
-      mail: "sage",
-      date: "2017/12/16(土) 05:43:23.34",
-      id: "AAAAAAA",
+      number:  1,
+      name:    "7743",
+      mail:    "sage",
+      date:    "2017/12/16(土) 05:43:23.34",
+      id:      "AAAAAAA",
       message: message,
-      thread: thread,
+      thread:  thread,
     )
   end
 
