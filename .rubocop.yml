@@ -7,3 +7,9 @@ AllCops:
   TargetRubyVersion: 2.3
   # uncomment if use rails cops
   # TargetRailsVersion: 5.1
+
+require: rubocop-rspec
+
+RSpec/FilePath:
+  Exclude:
+    - spec/integration_spec.rb
