@@ -20,8 +20,13 @@ restore_repo_cache_option: &restore_repo_cache_option
 
 restore_bundle_cache_option: &restore_bundle_cache_option
   keys:
-    - v1-bundle-{{ checksum "itest5ch.gemspec" }}
-    - v1-bundle
+    - v2-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
+    - v2-bundle-{{ .Environment.CIRCLE_JOB }}
+
+save_bundle_cache_option: &save_bundle_cache_option
+  key: v2-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
+  paths:
+    - ~/app/vendor/bundle
 
 jobs:
   checkout_code:
@@ -35,8 +40,11 @@ jobs:
           paths:
             - ~/app
 
-  bundle_dependencies:
+  rspec:2.3:
     <<: *default
+
+    docker:
+      - image: ruby:2.3
 
     steps:
       - restore_cache:
@@ -45,11 +53,26 @@ jobs:
           <<: *restore_bundle_cache_option
       - run: ./.circleci/setup.sh
       - save_cache:
-          key: v1-bundle-{{ checksum "itest5ch.gemspec" }}
-          paths:
-            - ~/app/vendor/bundle
+          <<: *save_bundle_cache_option
+      - run: ./.circleci/rspec.sh
 
-  rspec:
+  rspec:2.4:
+    <<: *default
+
+    docker:
+      - image: ruby:2.4
+
+    steps:
+      - restore_cache:
+          <<: *restore_repo_cache_option
+      - restore_cache:
+          <<: *restore_bundle_cache_option
+      - run: ./.circleci/setup.sh
+      - save_cache:
+          <<: *save_bundle_cache_option
+      - run: ./.circleci/rspec.sh
+
+  rspec:2.5:
     <<: *default
 
     docker:
@@ -61,7 +84,9 @@ jobs:
       - restore_cache:
           <<: *restore_bundle_cache_option
       - run: ./.circleci/setup.sh
-      - run: bundle exec rspec
+      - save_cache:
+          <<: *save_bundle_cache_option
+      - run: ./.circleci/rspec.sh
 
   rubocop:
     <<: *default
@@ -72,6 +97,9 @@ jobs:
       - restore_cache:
           <<: *restore_bundle_cache_option
       - run: ./.circleci/setup.sh
+      - save_cache:
+          <<: *save_bundle_cache_option
+
       - run: bundle exec rubocop
 
 workflows:
@@ -80,15 +108,18 @@ workflows:
   build:
     jobs:
       - checkout_code
-      - bundle_dependencies:
+      - rspec:2.3:
           requires:
             - checkout_code
-      - rspec:
+      - rspec:2.4:
           requires:
-            - bundle_dependencies
+            - checkout_code
+      - rspec:2.5:
+          requires:
+            - checkout_code
       - rubocop:
           requires:
-            - bundle_dependencies
+            - checkout_code
 
   weekly_build:
     triggers:
