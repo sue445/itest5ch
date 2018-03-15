@@ -28,14 +28,6 @@ module Itest5ch
     #   @return [Itest5ch::Thread]
     attr_accessor :thread
 
-    # @!attribute pc_url
-    #   @return [String]
-    attr_accessor :pc_url
-
-    # @!attribute smartphone_url
-    #   @return [String]
-    attr_accessor :smartphone_url
-
     # @param number         [Integer]
     # @param name           [String]
     # @param mail           [String]
@@ -69,5 +61,15 @@ module Itest5ch
     end
 
     alias_method :reply_numbers, :anchor_numbers
+
+    # @return [String]
+    def pc_url
+      "#{thread.pc_url}/#{number}"
+    end
+
+    # @return [String]
+    def smartphone_url
+      "#{thread.smartphone_url}/#{number}"
+    end
   end
 end
