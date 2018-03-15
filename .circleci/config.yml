@@ -6,7 +6,7 @@ version: 2
 
 default: &default
   docker:
-    - image: ruby
+    - image: ruby:slim
   environment:
     # c.f. https://github.com/ffaker/ffaker/issues/277#issuecomment-263519146
     LANG:     en_US.UTF-8
@@ -53,7 +53,7 @@ jobs:
     <<: *default
 
     docker:
-      - image: ruby:2.5
+      - image: ruby:2.5-slim
 
     steps:
       - restore_cache:
