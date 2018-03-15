@@ -28,6 +28,17 @@ save_bundle_cache_option: &save_bundle_cache_option
   paths:
     - ~/app/vendor/bundle
 
+rspec_steps: &rspec_steps
+  - restore_cache:
+      <<: *restore_repo_cache_option
+  - restore_cache:
+      <<: *restore_bundle_cache_option
+  - run: ./.circleci/setup.sh
+  - save_cache:
+      <<: *save_bundle_cache_option
+
+  - run: ./.circleci/rspec.sh
+
 jobs:
   checkout_code:
     <<: *default
@@ -46,15 +57,7 @@ jobs:
     docker:
       - image: ruby:2.3
 
-    steps:
-      - restore_cache:
-          <<: *restore_repo_cache_option
-      - restore_cache:
-          <<: *restore_bundle_cache_option
-      - run: ./.circleci/setup.sh
-      - save_cache:
-          <<: *save_bundle_cache_option
-      - run: ./.circleci/rspec.sh
+    steps: *rspec_steps
 
   rspec:2.4:
     <<: *default
@@ -62,15 +65,7 @@ jobs:
     docker:
       - image: ruby:2.4
 
-    steps:
-      - restore_cache:
-          <<: *restore_repo_cache_option
-      - restore_cache:
-          <<: *restore_bundle_cache_option
-      - run: ./.circleci/setup.sh
-      - save_cache:
-          <<: *save_bundle_cache_option
-      - run: ./.circleci/rspec.sh
+    steps: *rspec_steps
 
   rspec:2.5:
     <<: *default
@@ -78,15 +73,7 @@ jobs:
     docker:
       - image: ruby:2.5
 
-    steps:
-      - restore_cache:
-          <<: *restore_repo_cache_option
-      - restore_cache:
-          <<: *restore_bundle_cache_option
-      - run: ./.circleci/setup.sh
-      - save_cache:
-          <<: *save_bundle_cache_option
-      - run: ./.circleci/rspec.sh
+    steps: *rspec_steps
 
   rubocop:
     <<: *default
