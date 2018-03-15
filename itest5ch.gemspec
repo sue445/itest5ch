@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-parameterized"
   spec.add_development_dependency "rubocop", "0.52.1"
   spec.add_development_dependency "rubocop-rspec", "1.23.0"
+  spec.add_development_dependency "simplecov"
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "yard"
 end

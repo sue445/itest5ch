@@ -8,6 +8,7 @@ default: &default
   docker:
     - image: ruby
   environment:
+    # c.f. https://github.com/ffaker/ffaker/issues/277#issuecomment-263519146
     LANG:     en_US.UTF-8
     LANGUAGE: en_US.UTF-8
     LC_ALL:   C.UTF-8

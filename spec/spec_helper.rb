@@ -1,3 +1,13 @@
+if ENV["CI"]
+  require "simplecov"
+
+  SimpleCov.start do
+    %w[spec].each do |ignore_path|
+      add_filter(ignore_path)
+    end
+  end
+end
+
 require "bundler/setup"
 require "itest5ch"
 require "rspec/its"
