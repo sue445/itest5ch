@@ -105,4 +105,14 @@ RSpec.describe Itest5ch::Comment do
 
     it { should eq "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732/1" }
   end
+
+  describe "#id_checker_url" do
+    subject { comment.id_checker_url }
+
+    let(:thread_board) { "applism" }
+    let(:id)           { "T+wBkVi90" }
+    let(:date)         { "2018-02-07 16:32:12".in_time_zone }
+
+    it { should eq "http://hissi.org/read.php/applism/20180207/VCt3QmtWaTkw.html" }
+  end
 end
