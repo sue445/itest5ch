@@ -75,14 +75,13 @@ module Itest5ch
         number = comment[0]
 
         Comment.new(
-          number:          number,
-          name:            comment[1],
-          mail:            comment[2],
-          date:            time_at(comment[3].to_i),
-          id:              comment[4],
-          message:         message,
-          pc_url:          "#{pc_url}/#{number}",
-          smartphone_url:  "#{smartphone_url}/#{number}",
+          number:  number,
+          name:    comment[1],
+          mail:    comment[2],
+          date:    time_at(comment[3].to_i),
+          id:      comment[4],
+          message: message,
+          thread:  self,
         )
       end
     end

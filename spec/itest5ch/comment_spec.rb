@@ -1,17 +1,34 @@
 RSpec.describe Itest5ch::Comment do
+  let(:thread) do
+    Itest5ch::Thread.new(
+      subdomain: subdomain,
+      board:     board,
+      dat:       dat,
+      name:      name,
+    )
+  end
+
+  let(:subdomain) { "egg" }
+  let(:board)     { "applism" }
+  let(:dat)       { 1_517_988_732 }
+  let(:name)      { "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
+
+  let(:comment) do
+    Itest5ch::Comment.new(
+      number:  1,
+      name:    "7743",
+      mail:    "sage",
+      date:    "2017/12/16(土) 05:43:23.34",
+      id:      "AAAAAAA",
+      message: message,
+      thread:  thread,
+    )
+  end
+
+  let(:message) { "test" }
+
   describe "#anchor_numbers" do
     subject { comment.anchor_numbers }
-
-    let(:comment) do
-      Itest5ch::Comment.new(
-        number: 1,
-        name: "7743",
-        mail: "sage",
-        date: "2017/12/16(土) 05:43:23.34",
-        id: "AAAAAAA",
-        message: message,
-      )
-    end
 
     context "not found" do
       let(:message) do
@@ -70,5 +87,17 @@ RSpec.describe Itest5ch::Comment do
 
       it { should eq [20, 21] }
     end
+  end
+
+  describe "#pc_url" do
+    subject { comment.pc_url }
+
+    it { should eq "http://egg.5ch.net/test/read.cgi/applism/1517988732/1" }
+  end
+
+  describe "#smartphone_url" do
+    subject { comment.smartphone_url }
+
+    it { should eq "http://itest.5ch.net/egg/test/read.cgi/applism/1517988732/1" }
   end
 end

@@ -24,31 +24,25 @@ module Itest5ch
     #   @return [String]
     attr_accessor :message
 
-    # @!attribute pc_url
-    #   @return [String]
-    attr_accessor :pc_url
+    # @!attribute thread
+    #   @return [Itest5ch::Thread]
+    attr_accessor :thread
 
-    # @!attribute smartphone_url
-    #   @return [String]
-    attr_accessor :smartphone_url
-
-    # @param number         [Integer]
-    # @param name           [String]
-    # @param mail           [String]
-    # @param date           [Time]
-    # @param id             [String]
-    # @param message        [String]
-    # @param pc_url         [String]
-    # @param smartphone_url [String]
-    def initialize(number:, name:, mail:, date:, id:, message:, pc_url: nil, smartphone_url: nil) # rubocop:disable Metrics/ParameterLists
-      @number = number
-      @name = name
-      @mail = mail
-      @date = date
-      @id = id
+    # @param number  [Integer]
+    # @param name    [String]
+    # @param mail    [String]
+    # @param date    [Time]
+    # @param id      [String]
+    # @param message [String]
+    # @param thread  [Itest5ch::Thread]
+    def initialize(number:, name:, mail:, date:, id:, message:, thread:) # rubocop:disable Metrics/ParameterLists
+      @number  = number
+      @name    = name
+      @mail    = mail
+      @date    = date
+      @id      = id
       @message = message
-      @pc_url = pc_url
-      @smartphone_url = smartphone_url
+      @thread  = thread
     end
 
     # @return [Array<Integer>]
@@ -67,5 +61,15 @@ module Itest5ch
     end
 
     alias_method :reply_numbers, :anchor_numbers
+
+    # @return [String]
+    def pc_url
+      "#{thread.pc_url}/#{number}"
+    end
+
+    # @return [String]
+    def smartphone_url
+      "#{thread.smartphone_url}/#{number}"
+    end
   end
 end
