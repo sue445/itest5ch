@@ -81,8 +81,7 @@ module Itest5ch
           date:            time_at(comment[3].to_i),
           id:              comment[4],
           message:         message,
-          pc_url:          "#{pc_url}/#{number}",
-          smartphone_url:  "#{smartphone_url}/#{number}",
+          thread:          self,
         )
       end
     end

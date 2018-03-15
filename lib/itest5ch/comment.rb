@@ -24,6 +24,10 @@ module Itest5ch
     #   @return [String]
     attr_accessor :message
 
+    # @!attribute thread
+    #   @return [Itest5ch::Thread]
+    attr_accessor :thread
+
     # @!attribute pc_url
     #   @return [String]
     attr_accessor :pc_url
@@ -38,17 +42,15 @@ module Itest5ch
     # @param date           [Time]
     # @param id             [String]
     # @param message        [String]
-    # @param pc_url         [String]
-    # @param smartphone_url [String]
-    def initialize(number:, name:, mail:, date:, id:, message:, pc_url: nil, smartphone_url: nil) # rubocop:disable Metrics/ParameterLists
+    # @param thread         [Itest5ch::Thread]
+    def initialize(number:, name:, mail:, date:, id:, message:, thread:) # rubocop:disable Metrics/ParameterLists
       @number = number
       @name = name
       @mail = mail
       @date = date
       @id = id
       @message = message
-      @pc_url = pc_url
-      @smartphone_url = smartphone_url
+      @thread = thread
     end
 
     # @return [Array<Integer>]

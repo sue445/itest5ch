@@ -1,4 +1,18 @@
 RSpec.describe Itest5ch::Comment do
+  let(:thread) do
+    Itest5ch::Thread.new(
+      subdomain: subdomain,
+      board:     board,
+      dat:       dat,
+      name:      name,
+    )
+  end
+
+  let(:subdomain)      { "egg" }
+  let(:board)          { "applism" }
+  let(:dat)            { 1_517_988_732 }
+  let(:name)           { "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
+
   describe "#anchor_numbers" do
     subject { comment.anchor_numbers }
 
@@ -10,6 +24,7 @@ RSpec.describe Itest5ch::Comment do
         date: "2017/12/16(土) 05:43:23.34",
         id: "AAAAAAA",
         message: message,
+        thread: thread,
       )
     end
 
