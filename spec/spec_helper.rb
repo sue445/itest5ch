@@ -15,6 +15,7 @@ require "webmock/rspec"
 require "pry"
 require "active_support/time"
 require "rspec-parameterized"
+require "retryable"
 
 Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
 

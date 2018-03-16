@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "onkcop", "0.52.1.1"
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "retryable"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rspec-its"
   spec.add_development_dependency "rspec-parameterized"
