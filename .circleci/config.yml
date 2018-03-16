@@ -37,7 +37,7 @@ rspec_steps: &rspec_steps
   - save_cache:
       <<: *save_bundle_cache_option
 
-  - run: ./.circleci/rspec.sh
+  - run: bundle exec rspec
 
 jobs:
   checkout_code:
