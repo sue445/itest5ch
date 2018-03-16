@@ -30,7 +30,10 @@ RSpec.describe Itest5ch, type: :integration do
 
     thread = threads.sample
 
-    comments = thread.comments
+    comments =
+      Retryable.retryable(tries: 5, on: JSON::ParserError) do
+        thread.comments
+      end
 
     aggregate_failures do
       expect(comments).not_to be_empty
