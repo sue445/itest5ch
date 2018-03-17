@@ -113,7 +113,8 @@ workflows:
   weekly_build:
     triggers:
       - schedule:
-          cron: "00 19 * * 5" # JST 4:00 (Sat)
+          # cron: "00 19 * * 5" # JST 4:00 (Sat)
+          cron: "05 23 * * 5" # JST 8:05
           filters:
             branches:
               only: master
