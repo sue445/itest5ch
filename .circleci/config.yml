@@ -39,6 +39,21 @@ rspec_steps: &rspec_steps
 
   - run: bundle exec rspec
 
+build_jobs: &build_jobs
+  - checkout_code
+  - rspec:2.3:
+      requires:
+        - checkout_code
+  - rspec:2.4:
+      requires:
+        - checkout_code
+  - rspec:2.5:
+      requires:
+        - checkout_code
+  - rubocop:
+      requires:
+        - checkout_code
+
 jobs:
   checkout_code:
     <<: *default
@@ -93,20 +108,7 @@ workflows:
   version: 2
 
   build:
-    jobs:
-      - checkout_code
-      - rspec:2.3:
-          requires:
-            - checkout_code
-      - rspec:2.4:
-          requires:
-            - checkout_code
-      - rspec:2.5:
-          requires:
-            - checkout_code
-      - rubocop:
-          requires:
-            - checkout_code
+    jobs: *build_jobs
 
   weekly_build:
     triggers:
@@ -115,5 +117,4 @@ workflows:
           filters:
             branches:
               only: master
-    jobs:
-      - build
+    jobs: *build_jobs
