@@ -13,6 +13,9 @@ default: &default
     LANGUAGE: en_US.UTF-8
     LC_ALL:   C.UTF-8
 
+    BUNDLE_PATH: vendor/bundle
+    BUNDLE_JOBS: 4
+
   working_directory: ~/app
 
 restore_repo_cache_option: &restore_repo_cache_option
