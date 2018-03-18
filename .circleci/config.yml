@@ -13,6 +13,9 @@ default: &default
     LANGUAGE: en_US.UTF-8
     LC_ALL:   C.UTF-8
 
+    BUNDLE_PATH: vendor/bundle
+    BUNDLE_JOBS: 4
+
   working_directory: ~/app
 
 restore_repo_cache_option: &restore_repo_cache_option
@@ -20,13 +23,14 @@ restore_repo_cache_option: &restore_repo_cache_option
 
 restore_bundle_cache_option: &restore_bundle_cache_option
   keys:
-    - v2-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
-    - v2-bundle-{{ .Environment.CIRCLE_JOB }}
+    - v3-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
+    - v3-bundle-{{ .Environment.CIRCLE_JOB }}
 
 save_bundle_cache_option: &save_bundle_cache_option
-  key: v2-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
+  key: v3-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
   paths:
     - ~/app/vendor/bundle
+    - ~/app/Gemfile.lock
 
 rspec_steps: &rspec_steps
   - restore_cache:

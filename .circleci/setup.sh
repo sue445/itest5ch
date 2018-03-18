@@ -4,4 +4,5 @@ ruby --version
 bundle --version
 gem --version
 
-bundle install --path=vendor/bundle || bundle update
+bundle update
+bundle clean
