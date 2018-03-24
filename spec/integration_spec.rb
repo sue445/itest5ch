@@ -30,8 +30,12 @@ RSpec.describe Itest5ch, type: :integration do
 
     thread = threads.sample
 
+    exception_cb = proc do |_exception|
+      puts "Error: #{thread.json_url}"
+    end
+
     comments =
-      Retryable.retryable(tries: 5, on: JSON::ParserError) do
+      Retryable.retryable(tries: 5, on: JSON::ParserError, exception_cb: exception_cb) do
         thread.comments
       end
 
