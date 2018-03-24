@@ -77,7 +77,7 @@ module Itest5ch
     # @return [String]
     def id_checker_url
       ymd = date.strftime("%Y%m%d")
-      encoded_id = Base64.strict_encode64(id)
+      encoded_id = Base64.strict_encode64(id).delete("=")
       "http://hissi.org/read.php/#{thread.board}/#{ymd}/#{encoded_id}.html"
     end
   end
