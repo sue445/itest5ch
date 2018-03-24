@@ -109,10 +109,18 @@ RSpec.describe Itest5ch::Comment do
   describe "#id_checker_url" do
     subject { comment.id_checker_url }
 
-    let(:thread_board) { "applism" }
-    let(:id)           { "T+wBkVi90" }
-    let(:date)         { "2018-02-07 16:32:12".in_time_zone }
+    using RSpec::Parameterized::TableSyntax
 
-    it { should eq "http://hissi.org/read.php/applism/20180207/VCt3QmtWaTkw.html" }
+    let(:thread_board) { "applism" }
+
+    where(:id, :date_str, :url) do
+      "T+wBkVi90" | "2018-02-07 16:32:12" | "http://hissi.org/read.php/applism/20180207/VCt3QmtWaTkw.html"
+    end
+
+    with_them do
+      let(:date) { date_str.in_time_zone }
+
+      it { should eq url }
+    end
   end
 end
