@@ -114,7 +114,8 @@ RSpec.describe Itest5ch::Comment do
     let(:thread_board) { "applism" }
 
     where(:id, :date_str, :url) do
-      "T+wBkVi90" | "2018-02-07 16:32:12" | "http://hissi.org/read.php/applism/20180207/VCt3QmtWaTkw.html"
+      "T+wBkVi90"     | "2018-02-07 16:32:12" | "http://hissi.org/read.php/applism/20180207/VCt3QmtWaTkw.html"
+      "d0XWVAzFaSt.V" | "2018-02-14 08:19:46" | "http://hissi.org/read.php/applism/20180214/ZDBYV1ZBekZhU3QuVg.html"
     end
 
     with_them do
