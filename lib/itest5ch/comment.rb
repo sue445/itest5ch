@@ -74,7 +74,11 @@ module Itest5ch
       "#{thread.smartphone_url}/#{number}"
     end
 
+    # Get Id checker url for http://hissi.org
+    #
     # @return [String]
+    #
+    # @see http://hissi.org
     def id_checker_url
       ymd = date.strftime("%Y%m%d")
       encoded_id = Base64.strict_encode64(id).delete("=")
