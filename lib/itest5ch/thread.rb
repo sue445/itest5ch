@@ -92,7 +92,7 @@ module Itest5ch
     def self.normalize_message(message)
       message = HTMLEntities.new.decode(message).scrub("")
       message = CGI.unescapeHTML(message)
-      message.gsub("<br>", "\n").lines.map(&:strip).join("\n")
+      message.gsub(/\s*<br>\s*/i, "\n").strip
     end
 
     # @return [String]
