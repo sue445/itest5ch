@@ -178,6 +178,19 @@ RSpec.describe Itest5ch::Thread do
 
       it { should eq expected }
     end
+
+    context "with invalid character" do
+      let(:message) { " バイキングは4周くらいだったけどカタパルトは確実に100周いったな&#55357;&#56837;  <br> アレマジで謎確率&#55357;&#56834; " }
+
+      let(:expected) do
+        <<~MSG.strip
+          バイキングは4周くらいだったけどカタパルトは確実に100周いったな
+          アレマジで謎確率
+        MSG
+      end
+
+      it { should eq expected }
+    end
   end
 
   describe "#smartphone_url" do
