@@ -71,7 +71,7 @@ module Itest5ch
     # @return [Array<Itest5ch::Comment>]
     def comments
       fetch_data["comments"].map do |comment|
-        message = CGI.unescapeHTML(comment[6]).gsub("<br>", "\n").lines.map(&:strip).join("\n")
+        message = self.class.normalize_message(comment[6])
         number = comment[0]
 
         Comment.new(
@@ -84,6 +84,13 @@ module Itest5ch
           thread:  self,
         )
       end
+    end
+
+    # @param message [String]
+    #
+    # @return [String]
+    def self.normalize_message(message)
+      CGI.unescapeHTML(message).gsub("<br>", "\n").lines.map(&:strip).join("\n")
     end
 
     # @return [String]
