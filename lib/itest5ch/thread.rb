@@ -71,16 +71,13 @@ module Itest5ch
     # @return [Array<Itest5ch::Comment>]
     def comments
       fetch_data["comments"].map do |comment|
-        message = self.class.normalize_message(comment[6])
-        number = comment[0]
-
         Comment.new(
-          number:  number,
+          number:  comment[0].to_i,
           name:    comment[1],
           mail:    comment[2],
           date:    time_at(comment[3].to_i),
           id:      comment[4],
-          message: message,
+          message: self.class.normalize_message(comment[6]),
           thread:  self,
         )
       end
