@@ -1,5 +1,6 @@
 require "itest5ch/version"
 require "hpricot"
+require "htmlentities"
 
 module Itest5ch
   autoload :AssertMethods, "itest5ch/assert_methods"

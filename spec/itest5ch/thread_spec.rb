@@ -136,6 +136,63 @@ RSpec.describe Itest5ch::Thread do
     end
   end
 
+  describe ".normalize_message" do
+    subject { Itest5ch::Thread.normalize_message(message) }
+
+    context "with normal" do
+      # rubocop:disable Metrics/LineLength
+      let(:message) { " !extend:checked:vvvv:1000:512  <br> !extend:checked:vvvv:1000:512  <br> ☆スレ立て時↑が3行になるようにコピペして下さい  <br>  <br>  <br> 欲しかったのは、鍵を開ける勇気。  <br> 手にしたモノは、悪魔の力。  <br>  <br> 魔剣たちはいつだって笑顔で、  <br> そして、残酷だ。  <br>  <br> 真実はあまりにも、痛い。  <br>  <br> 公式 http://grimoire.co/bxb/  <br> 公式twitter https://twitter.com/bra_x_bla?lang=ja  <br> 公式ヘルプ https://bxb.grimoire.codes/help_categories  <br> ブレブレwiki　http://s.gaym.jp/iPhone/bravesword-blazesoul/  <br>  <br> 次スレは&gt;&gt;950 が宣言をしてからスレを立ててください。  <br> 無理そうなら&gt;&gt;980 までに安価指定するか、踏み逃げの場合宣言をしてから立ててください。  <br> スレ立ての際に&gt;&gt;1の1行目に  <br> 「!extend:checked:vvvv:1000:512」  <br> を書き込むこと。  <br> 忘れると荒らされてスレのみんなが悲しみます。  <br> ※前スレ  <br> 【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】  <br> https://egg.5ch.net/test/read.cgi/applism/1515815622/l50 VIPQ2_EXTDAT: checked:vvvv:1000:512:----: EXT was configured " }
+      # rubocop:enable Metrics/LineLength
+
+      let(:expected) do
+        <<~MSG.strip
+          !extend:checked:vvvv:1000:512
+          !extend:checked:vvvv:1000:512
+          ☆スレ立て時↑が3行になるようにコピペして下さい
+
+
+          欲しかったのは、鍵を開ける勇気。
+          手にしたモノは、悪魔の力。
+
+          魔剣たちはいつだって笑顔で、
+          そして、残酷だ。
+
+          真実はあまりにも、痛い。
+
+          公式 http://grimoire.co/bxb/
+          公式twitter https://twitter.com/bra_x_bla?lang=ja
+          公式ヘルプ https://bxb.grimoire.codes/help_categories
+          ブレブレwiki　http://s.gaym.jp/iPhone/bravesword-blazesoul/
+
+          次スレは>>950 が宣言をしてからスレを立ててください。
+          無理そうなら>>980 までに安価指定するか、踏み逃げの場合宣言をしてから立ててください。
+          スレ立ての際に>>1の1行目に
+          「!extend:checked:vvvv:1000:512」
+          を書き込むこと。
+          忘れると荒らされてスレのみんなが悲しみます。
+          ※前スレ
+          【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】
+          https://egg.5ch.net/test/read.cgi/applism/1515815622/l50 VIPQ2_EXTDAT: checked:vvvv:1000:512:----: EXT was configured
+        MSG
+      end
+
+      it { should eq expected }
+    end
+
+    context "with invalid character" do
+      let(:message) { " バイキングは4周くらいだったけどカタパルトは確実に100周いったな&#55357;&#56837;  <br> アレマジで謎確率&#55357;&#56834; " }
+
+      let(:expected) do
+        <<~MSG.strip
+          バイキングは4周くらいだったけどカタパルトは確実に100周いったな
+          アレマジで謎確率
+        MSG
+      end
+
+      it { should eq expected }
+    end
+  end
+
   describe "#smartphone_url" do
     subject { thread.smartphone_url }
 

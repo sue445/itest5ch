@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "hpricot"
+  spec.add_dependency "htmlentities"
 
   spec.add_development_dependency "activesupport"
   spec.add_development_dependency "bundler", "~> 1.16"
