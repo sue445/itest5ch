@@ -87,10 +87,15 @@ module Itest5ch
     #
     # @return [String]
     def self.normalize_message(message)
-      message = HTMLEntities.new.decode(message).scrub("")
+      message = coder.decode(message).scrub("")
       message = CGI.unescapeHTML(message)
       message.gsub(/\s*<br>\s*/i, "\n").strip
     end
+
+    def self.coder
+      @coder ||= HTMLEntities.new
+    end
+    private_class_method :coder
 
     # @return [String]
     def smartphone_url
