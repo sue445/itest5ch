@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-### [Board](lib/itest5ch/board.rb)
+### [Itest5ch::Board](lib/itest5ch/board.rb)
 
 #### Get all boards
 
@@ -68,7 +68,7 @@ board = Itest5ch::Board.find("スマートフォン")
 board = Itest5ch::Board.find("smartphone")
 ```
 
-### [Thread](lib/itest5ch/thread.rb)
+### [Itest5ch::Thread](lib/itest5ch/thread.rb)
 #### Get threads
 ```ruby
 threads = board.threads
@@ -85,12 +85,12 @@ thread = Itest5ch::Thread.new("http://egg.5ch.net/test/read.cgi/smartphone/00000
 thread = Itest5ch::Thread.new("http://itest.5ch.net/egg/test/read.cgi/smartphone/0000000000")
 ```
 
-### [Comment](lib/itest5ch/comment.rb)
+### [Itest5ch::Comment](lib/itest5ch/comment.rb)
 ```ruby
 comments = thread.comments
 ```
 
-### [Config](lib/itest5ch/config.rb)
+### [Itest5ch::Config](lib/itest5ch/config.rb)
 ```ruby
 Itest5ch.config.user_agent = "XXXX"
 ```
