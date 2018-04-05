@@ -77,9 +77,12 @@ module Itest5ch
     # Get Id checker url for http://hissi.org
     #
     # @return [String]
+    # @return [nil] {#id} is empty
     #
     # @see http://hissi.org
     def id_checker_url
+      return nil if !id || id.empty?
+
       ymd = date.strftime("%Y%m%d")
       encoded_id = Base64.strict_encode64(id).delete("=")
       "http://hissi.org/read.php/#{thread.board}/#{ymd}/#{encoded_id}.html"
