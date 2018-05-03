@@ -20,28 +20,25 @@ RSpec.describe Itest5ch::Thread do
   let(:rand)      { "1234567890" }
 
   describe "#initialize" do
-    let(:subdomain)      { "egg" }
-    let(:board)          { "applism" }
-    let(:dat)            { 1_517_988_732 }
-    let(:name)           { "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
-    let(:comments_count) { 445 }
+    let(:subdomain) { "egg" }
+    let(:board)     { "applism" }
+    let(:dat)       { 1_517_988_732 }
+    let(:name)      { "【自爆運営】ブレイブソード×ブレイズソウル★138【ブレブレ】" }
 
     context "with keyword args" do
       subject do
         Itest5ch::Thread.new(
-          subdomain:      subdomain,
-          board:          board,
-          dat:            dat,
-          name:           name,
-          comments_count: comments_count,
+          subdomain: subdomain,
+          board:     board,
+          dat:       dat,
+          name:      name,
         )
       end
 
-      its(:subdomain)      { should eq subdomain }
-      its(:board)          { should eq board }
-      its(:dat)            { should eq dat }
-      its(:name)           { should eq name }
-      its(:comments_count) { should eq comments_count }
+      its(:subdomain) { should eq subdomain }
+      its(:board)     { should eq board }
+      its(:dat)       { should eq dat }
+      its(:name)      { should eq name }
     end
 
     context "with string arg" do

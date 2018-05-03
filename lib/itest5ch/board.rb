@@ -30,11 +30,10 @@ module Itest5ch
       hash["threads"].map do |thread|
         board, dat = thread[3].split("/", 2)
         Itest5ch::Thread.new(
-          subdomain:      thread[2],
-          board:          board,
-          dat:            dat.to_i,
-          name:           thread[5],
-          comments_count: thread[1],
+          subdomain: thread[2],
+          board:     board,
+          dat:       dat.to_i,
+          name:      thread[5],
         )
       end
     end

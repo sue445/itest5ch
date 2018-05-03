@@ -21,18 +21,13 @@ module Itest5ch
     # @!attribute [w] name
     attr_writer :name
 
-    # @!attribute [rw] comments_count
-    #   @return [Integer]
-    attr_accessor :comments_count
-
-    # @overload initialize(subdomain:, board:, dat:, name: nil, comments_count: 0)
+    # @overload initialize(subdomain:, board:, dat:, name: nil)
     #   Set attributes
     #
-    #   @param subdomain      [String]
-    #   @param board          [String]
-    #   @param dat            [Integer]
-    #   @param name           [String]
-    #   @param comments_count [Integer]
+    #   @param subdomain [String]
+    #   @param board     [String]
+    #   @param dat       [Integer]
+    #   @param name      [String]
     #
     #   @example
     #     thread = Itest5ch::Thread.new(subdomain: "egg", board: "applism", dat: 1234567890)
@@ -65,7 +60,7 @@ module Itest5ch
     # @return [Boolean]
     def ==(other)
       other.is_a?(Thread) && subdomain == other.subdomain && board == other.board &&
-        dat == other.dat && name == other.name && comments_count == other.comments_count
+        dat == other.dat && name == other.name
     end
 
     # @return [Array<Itest5ch::Comment>]
@@ -128,11 +123,10 @@ module Itest5ch
       def initialize_with_hash(hash)
         assert_required_keys!(hash, :subdomain, :board, :dat)
 
-        @subdomain      = hash[:subdomain]
-        @board          = hash[:board]
-        @dat            = hash[:dat]
-        @name           = hash[:name]
-        @comments_count = hash[:comments_count] || 0
+        @subdomain = hash[:subdomain]
+        @board     = hash[:board]
+        @dat       = hash[:dat]
+        @name      = hash[:name]
       end
 
       # @param url [String]
