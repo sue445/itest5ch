@@ -70,7 +70,7 @@ module Itest5ch
     # @return [Itest5ch::Board]
     def self.find(board_name)
       url = "#{Itest5ch::BoardListPage::BOARDS_URL}subback/#{board_name}"
-      all.values.flatten.find { |board| board_name == board.name || url == board.url }
+      all.values.flatten.find {|board| board_name == board.name || url == board.url }
     end
   end
 end

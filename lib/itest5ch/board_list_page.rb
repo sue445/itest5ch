@@ -11,7 +11,7 @@ module Itest5ch
       doc = Hpricot(get_html(BOARDS_URL))
 
       doc.search("//div[@id='bbsmenu']//ul[@class='pure-menu-list']").
-        reject { |ul| ul["id"] == "history" }.each_with_object({}) do |ul, categories|
+        reject {|ul| ul["id"] == "history" }.each_with_object({}) do |ul, categories|
 
         category_name = ul.at("/li[@class='pure-menu-item pure-menu-selected']").inner_text.strip
         categories[category_name] = get_boards(ul)
@@ -21,7 +21,7 @@ module Itest5ch
     private
 
       def get_boards(ul)
-        ul.search("/li").select { |li| board_element?(li) }.each_with_object([]) do |li, boards|
+        ul.search("/li").select {|li| board_element?(li) }.each_with_object([]) do |li, boards|
           url = URI.join(BOARDS_URL, li.at("/a")["href"]).to_s
           name = li.inner_text.strip
 
