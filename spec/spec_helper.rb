@@ -17,7 +17,7 @@ require "active_support/time"
 require "rspec-parameterized"
 require "retryable"
 
-Dir["#{__dir__}/support/**/*.rb"].each { |f| require f }
+Dir["#{__dir__}/support/**/*.rb"].each {|f| require f }
 
 def spec_dir
   Pathname(__dir__)
