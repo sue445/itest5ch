@@ -34,7 +34,6 @@ module Itest5ch
           board:          board,
           dat:            dat.to_i,
           name:           thread[5],
-          comments_count: thread[1],
         )
       end
     end
