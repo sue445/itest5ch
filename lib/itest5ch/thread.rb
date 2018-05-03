@@ -24,10 +24,10 @@ module Itest5ch
     # @overload initialize(subdomain:, board:, dat:, name: nil)
     #   Set attributes
     #
-    #   @param subdomain      [String]
-    #   @param board          [String]
-    #   @param dat            [Integer]
-    #   @param name           [String]
+    #   @param subdomain [String]
+    #   @param board     [String]
+    #   @param dat       [Integer]
+    #   @param name      [String]
     #
     #   @example
     #     thread = Itest5ch::Thread.new(subdomain: "egg", board: "applism", dat: 1234567890)
@@ -123,10 +123,10 @@ module Itest5ch
       def initialize_with_hash(hash)
         assert_required_keys!(hash, :subdomain, :board, :dat)
 
-        @subdomain      = hash[:subdomain]
-        @board          = hash[:board]
-        @dat            = hash[:dat]
-        @name           = hash[:name]
+        @subdomain = hash[:subdomain]
+        @board     = hash[:board]
+        @dat       = hash[:dat]
+        @name      = hash[:name]
       end
 
       # @param url [String]

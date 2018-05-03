@@ -20,10 +20,10 @@ RSpec.describe Itest5ch::Board do
     describe "[0]" do
       subject { threads[0] }
 
-      its(:subdomain)      { should eq "egg" }
-      its(:board)          { should eq "applism" }
-      its(:dat)            { should eq 1_519_836_119 }
-      its(:name)           { should eq "【マギレコ】マギアレコード 魔法少女まどか☆マギカ外伝 877周目" }
+      its(:subdomain) { should eq "egg" }
+      its(:board)     { should eq "applism" }
+      its(:dat)       { should eq 1_519_836_119 }
+      its(:name)      { should eq "【マギレコ】マギアレコード 魔法少女まどか☆マギカ外伝 877周目" }
     end
   end
 
