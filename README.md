@@ -4,6 +4,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/itest5ch.svg)](https://badge.fury.io/rb/itest5ch)
 [![CircleCI](https://circleci.com/gh/sue445/itest5ch/tree/master.svg)](https://circleci.com/gh/sue445/itest5ch/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/sue445/itest5ch/badge.svg)](https://coveralls.io/github/sue445/itest5ch)
 
 ## Installation
 
