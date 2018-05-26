@@ -3,7 +3,7 @@
 5ch (a.k.a. 2ch) reader via http://itest.5ch.net/
 
 [![Gem Version](https://badge.fury.io/rb/itest5ch.svg)](https://badge.fury.io/rb/itest5ch)
-[![CircleCI](https://circleci.com/gh/sue445/itest5ch/tree/master.svg?style=svg&circle-token=6424acab43b6dd71c3e09619ff7bb2e9b5611aa0)](https://circleci.com/gh/sue445/itest5ch/tree/master)
+[![CircleCI](https://circleci.com/gh/sue445/itest5ch/tree/master.svg)](https://circleci.com/gh/sue445/itest5ch/tree/master)
 
 ## Installation
 
