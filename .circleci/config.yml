@@ -15,6 +15,7 @@ default: &default
 
     BUNDLE_PATH: vendor/bundle
     BUNDLE_JOBS: 4
+    CODECLIMATE_REPO_TOKEN: d91e7c9665019f1574eb4c5a3de1547c80bc3062e3c297282f106501a3c5c694
 
   working_directory: ~/app
 
@@ -47,6 +48,7 @@ rspec_steps: &rspec_steps
       <<: *save_bundle_cache_option
 
   - run: bundle exec rspec
+  - run: bundle exec codeclimate-test-reporter
 
 build_jobs: &build_jobs
   - checkout_code
