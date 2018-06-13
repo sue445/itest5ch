@@ -18,6 +18,7 @@ require "pry"
 require "active_support/time"
 require "rspec-parameterized"
 require "retryable"
+require "open-uri"
 
 Dir["#{__dir__}/support/**/*.rb"].each {|f| require f }
 
