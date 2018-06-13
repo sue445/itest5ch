@@ -8,7 +8,9 @@ RSpec.describe Itest5ch, type: :integration do
   end
 
   it "successful real http connection" do # rubocop:disable RSpec/ExampleLength
-    category_and_boards = Itest5ch::Board.all
+    category_and_boards = Retryable.with_context(:default) do
+      Itest5ch::Board.all
+    end
 
     expect(category_and_boards).to be_an_instance_of(Hash)
 
@@ -21,7 +23,13 @@ RSpec.describe Itest5ch, type: :integration do
 
     board = boards.sample
 
-    threads = board.threads
+    thread_exception_cb = proc do |_exception|
+      puts "Error: #{board.json_url}"
+    end
+
+    threads = Retryable.with_context(:default, exception_cb: thread_exception_cb) do
+      board.threads
+    end
 
     aggregate_failures do
       expect(threads).not_to be_empty
@@ -30,14 +38,13 @@ RSpec.describe Itest5ch, type: :integration do
 
     thread = threads.sample
 
-    exception_cb = proc do |_exception|
+    comment_exception_cb = proc do |_exception|
       puts "Error: #{thread.json_url}"
     end
 
-    comments =
-      Retryable.retryable(tries: 5, on: JSON::ParserError, exception_cb: exception_cb) do
-        thread.comments
-      end
+    comments = Retryable.with_context(:default, exception_cb: comment_exception_cb) do
+      thread.comments
+    end
 
     aggregate_failures do
       expect(comments).not_to be_empty
