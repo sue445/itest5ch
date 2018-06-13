@@ -35,7 +35,7 @@ RSpec.describe Itest5ch, type: :integration do
     end
 
     comments =
-      Retryable.retryable(tries: 5, on: JSON::ParserError, exception_cb: exception_cb) do
+      Retryable.with_context(:default, exception_cb: exception_cb) do
         thread.comments
       end
 

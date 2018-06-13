@@ -137,3 +137,18 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+Retryable.configure do |config|
+  retryable_errors = [
+    JSON::ParserError,
+    Net::OpenTimeout,
+    Net::ReadTimeout,
+    OpenURI::HTTPError,
+  ]
+
+  config.contexts[:default] = {
+    on: retryable_errors,
+    sleep: 1,
+    tries: 5,
+  }
+end
