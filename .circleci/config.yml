@@ -4,19 +4,6 @@
 #
 version: 2.1
 
-default: &default
-  environment:
-    # c.f. https://github.com/ffaker/ffaker/issues/277#issuecomment-263519146
-    LANG:     en_US.UTF-8
-    LANGUAGE: en_US.UTF-8
-    LC_ALL:   C.UTF-8
-
-    BUNDLE_PATH: vendor/bundle
-    BUNDLE_JOBS: 4
-    CODECLIMATE_REPO_TOKEN: d91e7c9665019f1574eb4c5a3de1547c80bc3062e3c297282f106501a3c5c694
-
-  working_directory: ~/app
-
 executors:
   ruby:
     parameters:
@@ -25,6 +12,16 @@ executors:
         default: "latest"
     docker:
       - image: ruby:<< parameters.tag >>
+    environment:
+      # c.f. https://github.com/ffaker/ffaker/issues/277#issuecomment-263519146
+      LANG:     en_US.UTF-8
+      LANGUAGE: en_US.UTF-8
+      LC_ALL:   C.UTF-8
+
+      BUNDLE_PATH: vendor/bundle
+      BUNDLE_JOBS: 4
+      CODECLIMATE_REPO_TOKEN: d91e7c9665019f1574eb4c5a3de1547c80bc3062e3c297282f106501a3c5c694
+    working_directory: ~/app
 
 commands:
   setup_bundle:
@@ -54,8 +51,6 @@ commands:
 
 jobs:
   rspec:
-    <<: *default
-
     parameters:
       version:
         type: string
@@ -70,8 +65,6 @@ jobs:
       - run: bundle exec codeclimate-test-reporter
 
   rubocop:
-    <<: *default
-
     executor:
       name: ruby
 
