@@ -2,11 +2,9 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
-version: 2
+version: 2.1
 
 default: &default
-  docker:
-    - image: ruby
   environment:
     # c.f. https://github.com/ffaker/ffaker/issues/277#issuecomment-263519146
     LANG:     en_US.UTF-8
@@ -19,71 +17,81 @@ default: &default
 
   working_directory: ~/app
 
-restore_bundle_cache_option: &restore_bundle_cache_option
-  keys:
-    - v3-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
-    - v3-bundle-{{ .Environment.CIRCLE_JOB }}
+executors:
+  ruby:
+    parameters:
+      tag:
+        type: string
+        default: "latest"
+    docker:
+      - image: ruby:<< parameters.tag >>
 
-save_bundle_cache_option: &save_bundle_cache_option
-  key: v3-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
-  paths:
-    - ~/app/vendor/bundle
-    - ~/app/Gemfile.lock
+commands:
+  setup_bundle:
+    description: "Setup bundle with cache"
+    steps:
+      - restore_cache:
+          keys:
+            - v3-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
+            - v3-bundle-{{ .Environment.CIRCLE_JOB }}
 
-rspec_steps: &rspec_steps
-  - checkout
-  - restore_cache:
-      <<: *restore_bundle_cache_option
-  - run: ./.circleci/setup.sh
-  - save_cache:
-      <<: *save_bundle_cache_option
+      - run:
+          name: Setup
+          command: |
+            set -xe
+            ruby --version
+            bundle --version
+            gem --version
 
-  - run: bundle exec rspec
-  - run: bundle exec codeclimate-test-reporter
+            bundle update
+            bundle clean
 
-build_jobs: &build_jobs
-  - rspec:2.3
-  - rspec:2.4
-  - rspec:2.5
-  - rubocop
+      - save_cache:
+          key: v3-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum "itest5ch.gemspec" }}
+          paths:
+            - ~/app/vendor/bundle
+            - ~/app/Gemfile.lock
 
 jobs:
-  rspec:2.3:
+  rspec:
     <<: *default
 
-    docker:
-      - image: ruby:2.3
+    parameters:
+      version:
+        type: string
+    executor:
+      name: ruby
+      tag: << parameters.version >>
+    steps:
+      - checkout
+      - setup_bundle
 
-    steps: *rspec_steps
-
-  rspec:2.4:
-    <<: *default
-
-    docker:
-      - image: ruby:2.4
-
-    steps: *rspec_steps
-
-  rspec:2.5:
-    <<: *default
-
-    docker:
-      - image: ruby:2.5
-
-    steps: *rspec_steps
+      - run: bundle exec rspec
+      - run: bundle exec codeclimate-test-reporter
 
   rubocop:
     <<: *default
 
+    executor:
+      name: ruby
+
     steps:
       - checkout
-      - restore_cache:
-          <<: *restore_bundle_cache_option
-      - run: ./.circleci/setup.sh
-      - save_cache:
-          <<: *save_bundle_cache_option
+      - setup_bundle
 
       - run: bundle exec rubocop
+
+build_jobs: &build_jobs
+  - rspec:
+      name:    "rspec:2.3"
+      version: "2.3"
+  - rspec:
+      name:    "rspec:2.4"
+      version: "2.4"
+  - rspec:
+      name:    "rspec:2.5"
+      version: "2.5"
+  - rubocop
 
 workflows:
   version: 2
