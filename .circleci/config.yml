@@ -104,6 +104,9 @@ build_jobs: &build_jobs
   - rspec:
       name:    "rspec:2.5"
       version: "2.5"
+  - rspec:
+      name:    "rspec:2.6"
+      version: "2.6"
   - rubocop
 
 workflows:
