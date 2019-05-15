@@ -17,7 +17,6 @@ require "webmock/rspec"
 require "pry"
 require "active_support/time"
 require "rspec-parameterized"
-require "retryable"
 require "open-uri"
 
 Dir["#{__dir__}/support/**/*.rb"].each {|f| require f }
@@ -137,19 +136,4 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
-end
-
-Retryable.configure do |config|
-  retryable_errors = [
-    JSON::ParserError,
-    Net::OpenTimeout,
-    Net::ReadTimeout,
-    OpenURI::HTTPError,
-  ]
-
-  config.contexts[:default] = {
-    on: retryable_errors,
-    sleep: 1,
-    tries: 5,
-  }
 end
