@@ -12,7 +12,6 @@ module Itest5ch
 
       doc.search("//div[@id='bbsmenu']//ul[@class='pure-menu-list']").
         reject {|ul| ul["id"] == "history" }.each_with_object({}) do |ul, categories|
-
         category_name = ul.at("/li[@class='pure-menu-item pure-menu-selected']").inner_text.strip
         categories[category_name] = get_boards(ul)
       end
