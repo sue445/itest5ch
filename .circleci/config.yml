@@ -5,14 +5,15 @@
 version: 2.1
 
 orbs:
-  ruby-orbs: sue445/ruby-orbs@volatile
+  codeclimate: sue445/codeclimate@volatile
+  ruby-orbs:   sue445/ruby-orbs@volatile
 
 executors:
   ruby:
     parameters:
       tag:
         type: string
-        default: "2.6"
+        default: "latest"
     docker:
       - image: ruby:<< parameters.tag >>
     environment:
@@ -25,27 +26,6 @@ executors:
       BUNDLE_JOBS: 4
       CC_TEST_REPORTER_ID: d91e7c9665019f1574eb4c5a3de1547c80bc3062e3c297282f106501a3c5c694
     working_directory: ~/app
-
-commands:
-  with-cc-test-reporter:
-    description: "Run test with cc-test-reporter"
-    parameters:
-      steps:
-        type: steps
-        default: []
-        description: "Run steps between `before-build` and `after-build`"
-    steps:
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            # download test reporter as a static binary
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-      - run: ./cc-test-reporter before-build
-      - steps: << parameters.steps >>
-      - run:
-          command: ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
-          when: always
 
 jobs:
   rspec:
@@ -61,10 +41,12 @@ jobs:
       - run: bundle --version
       - run: gem --version
       - ruby-orbs/bundle-install:
+          cache_key_prefix: "v2-rspec"
           with_gemfile_lock: false
           gemspec_name: "itest5ch"
           update_always: true
-      - with-cc-test-reporter:
+      - codeclimate/with-cc-test-reporter:
+          after_build_args: "--coverage-input-type simplecov"
           steps:
             - run: bundle exec rspec
 
@@ -75,6 +57,7 @@ jobs:
     steps:
       - checkout
       - ruby-orbs/bundle-install:
+          cache_key_prefix: "v2-rubocop"
           with_gemfile_lock: false
           gemspec_name: "itest5ch"
           update_always: true
@@ -88,6 +71,9 @@ build_jobs: &build_jobs
   - rspec:
       name:    "rspec:2.6"
       version: "2.6"
+  - rspec:
+      name:    "rspec:2.7"
+      version: "2.7"
   - rubocop
 
 workflows:
