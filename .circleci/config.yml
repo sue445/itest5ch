@@ -83,12 +83,6 @@ jobs:
 
 build_jobs: &build_jobs
   - rspec:
-      name:    "rspec:2.3"
-      version: "2.3"
-  - rspec:
-      name:    "rspec:2.4"
-      version: "2.4"
-  - rspec:
       name:    "rspec:2.5"
       version: "2.5"
   - rspec:
