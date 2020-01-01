@@ -8,7 +8,9 @@ AllCops:
   # uncomment if use rails cops
   # TargetRailsVersion: 5.1
 
-require: rubocop-rspec
+require:
+  - rubocop-performance
+  - rubocop-rspec
 
 RSpec/FilePath:
   Exclude:
