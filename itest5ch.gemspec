@@ -38,6 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop-rspec", "1.37.1"
   spec.add_development_dependency "rubocop_auto_corrector"
   spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "unparser", ">= 0.4.5"
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "yard"
 end
