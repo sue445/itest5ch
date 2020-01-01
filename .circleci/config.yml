@@ -12,7 +12,7 @@ executors:
     parameters:
       tag:
         type: string
-        default: "2.6"
+        default: "latest"
     docker:
       - image: ruby:<< parameters.tag >>
     environment:
@@ -88,6 +88,9 @@ build_jobs: &build_jobs
   - rspec:
       name:    "rspec:2.6"
       version: "2.6"
+  - rspec:
+      name:    "rspec:2.7"
+      version: "2.7"
   - rubocop
 
 workflows:
