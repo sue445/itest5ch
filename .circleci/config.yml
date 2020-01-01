@@ -41,6 +41,7 @@ jobs:
       - run: bundle --version
       - run: gem --version
       - ruby-orbs/bundle-install:
+          cache_key_prefix: "v2-rspec"
           with_gemfile_lock: false
           gemspec_name: "itest5ch"
           update_always: true
@@ -56,6 +57,7 @@ jobs:
     steps:
       - checkout
       - ruby-orbs/bundle-install:
+          cache_key_prefix: "v2-rubocop"
           with_gemfile_lock: false
           gemspec_name: "itest5ch"
           update_always: true
