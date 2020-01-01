@@ -19,7 +19,7 @@ require "active_support/time"
 require "rspec-parameterized"
 require "open-uri"
 
-Dir["#{__dir__}/support/**/*.rb"].each {|f| require f }
+Dir["#{__dir__}/support/**/*.rb"].sort.each {|f| require f }
 
 def spec_dir
   Pathname(__dir__)
