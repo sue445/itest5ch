@@ -12,6 +12,9 @@ require:
   - rubocop-performance
   - rubocop-rspec
 
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+
 RSpec/FilePath:
   Exclude:
     - spec/integration_spec.rb
