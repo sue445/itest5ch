@@ -12,7 +12,7 @@ executors:
     parameters:
       tag:
         type: string
-        default: "latest"
+        default: "2.6"
     docker:
       - image: ruby:<< parameters.tag >>
     environment:
