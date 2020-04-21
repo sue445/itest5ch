@@ -63,14 +63,12 @@ jobs:
 
 build_jobs: &build_jobs
   - rspec:
-      name:    "rspec:2.5"
-      version: "2.5"
-  - rspec:
-      name:    "rspec:2.6"
-      version: "2.6"
-  - rspec:
-      name:    "rspec:2.7"
-      version: "2.7"
+      matrix:
+        parameters:
+          version:
+            - "2.5"
+            - "2.6"
+            - "2.7"
   - rubocop
 
 workflows:
