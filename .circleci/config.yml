@@ -27,6 +27,12 @@ executors:
       CC_TEST_REPORTER_ID: d91e7c9665019f1574eb4c5a3de1547c80bc3062e3c297282f106501a3c5c694
     working_directory: ~/app
 
+commands:
+  bundle_install:
+    steps:
+      - run: bundle config --local path vendor/bundle
+      - run: bundle install --jobs=4 --retry=3
+
 jobs:
   rspec:
     parameters:
@@ -40,11 +46,7 @@ jobs:
       - run: ruby --version
       - run: bundle --version
       - run: gem --version
-      - ruby-orbs/bundle-install:
-          cache_key_prefix: "v7-rspec"
-          with_gemfile_lock: false
-          gemspec_name: "itest5ch"
-          update_always: true
+      - bundle_install
       - codeclimate/with-cc-test-reporter:
           after_build_args: "--coverage-input-type simplecov"
           steps:
@@ -56,6 +58,7 @@ jobs:
 
     steps:
       - checkout
+      - bundle_install
       - ruby-orbs/bundle-install:
           cache_key_prefix: "v7-rubocop"
           with_gemfile_lock: false
