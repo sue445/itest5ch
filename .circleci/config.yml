@@ -6,7 +6,6 @@ version: 2.1
 
 orbs:
   codeclimate: sue445/codeclimate@volatile
-  ruby-orbs:   sue445/ruby-orbs@volatile
 
 executors:
   ruby:
@@ -59,11 +58,6 @@ jobs:
     steps:
       - checkout
       - bundle_install
-      - ruby-orbs/bundle-install:
-          cache_key_prefix: "v7-rubocop"
-          with_gemfile_lock: false
-          gemspec_name: "itest5ch"
-          update_always: true
 
       - run: bundle exec rubocop
 
