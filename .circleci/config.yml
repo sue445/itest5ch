@@ -51,7 +51,9 @@ jobs:
           after_build_args: "--coverage-input-type simplecov"
           steps:
             - run: bundle exec rspec
-      - slack/notify-on-failure
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   rubocop:
     executor:
@@ -61,7 +63,9 @@ jobs:
       - checkout
       - bundle_install
       - run: bundle exec rubocop
-      - slack/notify-on-failure
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
 build_jobs: &build_jobs
   - rspec:
