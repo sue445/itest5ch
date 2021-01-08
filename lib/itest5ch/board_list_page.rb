@@ -19,14 +19,14 @@ module Itest5ch
 
     private
 
-    def get_boards(ul)
-      ul.search("/li").select {|li| board_element?(li) }.each_with_object([]) do |li, boards|
-        url = URI.join(BOARDS_URL, li.at("/a")["href"]).to_s
-        name = li.inner_text.strip
+      def get_boards(ul)
+        ul.search("/li").select {|li| board_element?(li) }.each_with_object([]) do |li, boards|
+          url = URI.join(BOARDS_URL, li.at("/a")["href"]).to_s
+          name = li.inner_text.strip
 
-        boards << Board.new(url, name: name)
+          boards << Board.new(url, name: name)
+        end
       end
-    end
 
     def board_element?(li)
       return false unless li["class"].include?("pure-menu-item")

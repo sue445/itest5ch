@@ -120,14 +120,14 @@ module Itest5ch
     private
 
     # @param hash [Hash]
-    def initialize_with_hash(hash)
-      assert_required_keys!(hash, :subdomain, :board, :dat)
+      def initialize_with_hash(hash)
+        assert_required_keys!(hash, :subdomain, :board, :dat)
 
-      @subdomain = hash[:subdomain]
-      @board     = hash[:board]
-      @dat       = hash[:dat]
-      @name      = hash[:name]
-    end
+        @subdomain = hash[:subdomain]
+        @board     = hash[:board]
+        @dat       = hash[:dat]
+        @name      = hash[:name]
+      end
 
     # @param url [String]
     def initialize_with_string(url)
