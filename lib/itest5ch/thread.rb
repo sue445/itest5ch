@@ -119,7 +119,7 @@ module Itest5ch
 
     private
 
-    # @param hash [Hash]
+      # @param hash [Hash]
       def initialize_with_hash(hash)
         assert_required_keys!(hash, :subdomain, :board, :dat)
 
