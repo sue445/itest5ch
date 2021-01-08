@@ -7,6 +7,8 @@ AllCops:
   TargetRubyVersion: 2.5
   # uncomment if use rails cops
   # TargetRailsVersion: 5.1
+  NewCops: enable
+  SuggestExtensions: false
 
 require:
   - rubocop-performance
@@ -18,3 +20,6 @@ Layout/HashAlignment:
 RSpec/FilePath:
   Exclude:
     - spec/integration_spec.rb
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
