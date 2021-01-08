@@ -129,7 +129,7 @@ module Itest5ch
         @name      = hash[:name]
       end
 
-    # @param url [String]
+      # @param url [String]
       def initialize_with_string(url)
         if (m = url.match(%r{https?://itest\.5ch\.net/(.+)/test/read\.cgi/([^/]+)/([0-9]+)}))
           @subdomain = m[1]
@@ -148,20 +148,20 @@ module Itest5ch
         raise ArgumentError, "'#{url}' is invalid url format"
       end
 
-    # @return [Hash]
+      # @return [Hash]
       def fetch_data
         get_json(json_url, referer: smartphone_url)
       end
 
-    # @return [String] random 10 char string
+      # @return [String] random 10 char string
       def rand
         SecureRandom.hex(5)
       end
 
-    # @param unixtime [Integer]
-    #
-    # @return [ActiveSupport::TimeWithZone] When `Time.zone` is initialized
-    # @return [Time] When `Time.zone` is not initialized or without activesupport
+      # @param unixtime [Integer]
+      #
+      # @return [ActiveSupport::TimeWithZone] When `Time.zone` is initialized
+      # @return [Time] When `Time.zone` is not initialized or without activesupport
       def time_at(unixtime)
         if Time.respond_to?(:zone) && Time.zone.respond_to?(:at)
           Time.zone.at(unixtime)
