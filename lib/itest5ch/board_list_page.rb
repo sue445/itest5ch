@@ -28,11 +28,11 @@ module Itest5ch
         end
       end
 
-    def board_element?(li)
-      return false unless li["class"].include?("pure-menu-item")
-      return false if li["class"].include?("pure-menu-selected")
+      def board_element?(li)
+        return false unless li["class"].include?("pure-menu-item")
+        return false if li["class"].include?("pure-menu-selected")
 
-      true
-    end
+        true
+      end
   end
 end
