@@ -1,5 +1,11 @@
 ## master
-[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.0...master)
+[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.1...master)
+
+## v2.0.1
+[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.0...v2.0.1)
+
+* Upgrade rubocop gems
+  * https://github.com/sue445/itest5ch/pull/79
 
 ## v2.0.0
 [full changelog](http://github.com/sue445/itest5ch/compare/v1.0.0...v2.0.0)
