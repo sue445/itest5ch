@@ -12,7 +12,7 @@ module Itest5ch
       options["User-Agent"] = Itest5ch.config.user_agent if Itest5ch.config.user_agent
       options["Referer"] = referer if referer
 
-      URI.open(url, options).read
+      URI.parse(url).open(options).read
     end
 
     # @param url [String]
