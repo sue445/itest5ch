@@ -1,5 +1,11 @@
 ## master
-[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.1...master)
+[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.2...master)
+
+## v2.0.2
+[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.1...v2.0.2)
+
+* Enable MFA requirement for gem releasing
+  * https://github.com/sue445/itest5ch/pull/80
 
 ## v2.0.1
 [full changelog](http://github.com/sue445/itest5ch/compare/v2.0.0...v2.0.1)
