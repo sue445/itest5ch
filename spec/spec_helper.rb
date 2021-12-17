@@ -14,9 +14,16 @@ require "bundler/setup"
 require "itest5ch"
 require "rspec/its"
 require "webmock/rspec"
-require "active_support/time"
 require "rspec-parameterized"
 require "open-uri"
+
+begin
+  # workaround for activesupport 7.0.0
+  # c.f. https://github.com/rails/rails/issues/43851
+  require "active_support/isolated_execution_state"
+rescue LoadError # rubocop:disable Lint/SuppressedException
+end
+require "active_support/time"
 
 Dir["#{__dir__}/support/**/*.rb"].sort.each {|f| require f }
 
