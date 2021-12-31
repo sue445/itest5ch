@@ -56,6 +56,7 @@ jobs:
   rubocop:
     executor:
       name: ruby
+      tag: "2.5"
 
     steps:
       - checkout
