@@ -3,7 +3,7 @@
 5ch (a.k.a. 2ch) reader via http://itest.5ch.net/
 
 [![Gem Version](https://badge.fury.io/rb/itest5ch.svg)](https://badge.fury.io/rb/itest5ch)
-[![CircleCI](https://circleci.com/gh/sue445/itest5ch/tree/master.svg?style=svg)](https://circleci.com/gh/sue445/itest5ch/tree/master)
+[![test](https://github.com/sue445/itest5ch/actions/workflows/test.yml/badge.svg)](https://github.com/sue445/itest5ch/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/sue445/itest5ch/badge.svg)](https://coveralls.io/github/sue445/itest5ch)
 [![Maintainability](https://api.codeclimate.com/v1/badges/14a81b3f7da11e475242/maintainability)](https://codeclimate.com/github/sue445/itest5ch/maintainability)
 
