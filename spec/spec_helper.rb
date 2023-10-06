@@ -16,6 +16,7 @@ require "rspec/its"
 require "webmock/rspec"
 require "rspec-parameterized"
 require "open-uri"
+require "active_support"
 
 begin
   # workaround for activesupport 7.0.0
