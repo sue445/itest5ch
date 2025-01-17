@@ -11,6 +11,10 @@ if ENV["CI"]
 end
 
 require "bundler/setup"
+
+# FIXME: NameError: uninitialized constant ActiveSupport::LoggerThreadSafeLevel::Logger when activesupport < 7.1
+require "logger"
+
 require "itest5ch"
 require "rspec/its"
 require "webmock/rspec"
