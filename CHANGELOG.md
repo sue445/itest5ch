@@ -1,7 +1,7 @@
 ## master
 [full changelog](http://github.com/sue445/itest5ch/compare/v3.0.0...master)
 
-## v3.0.0
+## [v3.0.0](https://github.com/sue445/itest5ch/releases/tag/v3.0.0)
 [full changelog](http://github.com/sue445/itest5ch/compare/v2.0.2...v3.0.0)
 
 ### BREAKING CHANGES :bomb:
