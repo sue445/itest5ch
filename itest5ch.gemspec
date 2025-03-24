@@ -39,10 +39,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rspec-its"
   spec.add_development_dependency "rspec-parameterized"
-  spec.add_development_dependency "rubocop", "1.24.1"
+  spec.add_development_dependency "rubocop", "1.74.0"
   spec.add_development_dependency "rubocop_auto_corrector"
-  spec.add_development_dependency "rubocop-performance", "1.13.0"
-  spec.add_development_dependency "rubocop-rspec", "2.7.0"
+  spec.add_development_dependency "rubocop-performance", "1.24.0"
+  spec.add_development_dependency "rubocop-rspec", "3.5.0"
   spec.add_development_dependency "simplecov", "< 0.18.0"
   spec.add_development_dependency "term-ansicolor", "!= 1.11.1" # ref. https://github.com/flori/term-ansicolor/issues/41
   spec.add_development_dependency "unparser", ">= 0.4.5"
