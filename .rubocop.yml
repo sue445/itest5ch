@@ -17,7 +17,7 @@ plugins:
 Layout/HashAlignment:
   EnforcedColonStyle: table
 
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
   Exclude:
     - spec/integration_spec.rb
 
