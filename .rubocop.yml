@@ -17,6 +17,9 @@ plugins:
 Gemspec/DevelopmentDependencies:
   EnforcedStyle: gemspec
 
+Layout/ClassStructure:
+  Enabled: false
+
 Layout/HashAlignment:
   EnforcedColonStyle: table
 
