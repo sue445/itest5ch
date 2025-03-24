@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.5.0"
 
-  spec.add_dependency "hpricot"
   spec.add_dependency "htmlentities"
+  spec.add_dependency "nokogiri"
 
   spec.add_development_dependency "activesupport"
   spec.add_development_dependency "bundler", ">= 1.16"

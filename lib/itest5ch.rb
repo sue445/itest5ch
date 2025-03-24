@@ -1,5 +1,5 @@
 require "itest5ch/version"
-require "hpricot"
+require "nokogiri"
 require "htmlentities"
 
 module Itest5ch
