@@ -14,6 +14,9 @@ plugins:
   - rubocop-performance
   - rubocop-rspec
 
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
 Layout/HashAlignment:
   EnforcedColonStyle: table
 
