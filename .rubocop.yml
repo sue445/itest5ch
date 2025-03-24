@@ -10,14 +10,20 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
 
-require:
+plugins:
   - rubocop-performance
   - rubocop-rspec
+
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
+Layout/ClassStructure:
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: table
 
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
   Exclude:
     - spec/integration_spec.rb
 
