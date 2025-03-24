@@ -1,5 +1,14 @@
 ## master
-[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.2...master)
+[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.0...master)
+
+## v3.0.0
+[full changelog](http://github.com/sue445/itest5ch/compare/v2.0.2...v3.0.0)
+
+### BREAKING CHANGES :bomb:
+* Migrate from hpricot to nokogiri
+  * https://github.com/sue445/itest5ch/pull/109
+* Requires Ruby 2.7+
+  * https://github.com/sue445/itest5ch/pull/110
 
 ## v2.0.2
 [full changelog](http://github.com/sue445/itest5ch/compare/v2.0.1...v2.0.2)
