@@ -82,7 +82,14 @@ module Itest5ch
     #
     # @return [String]
     def self.normalize_message(message)
-      message = coder.decode(message).scrub("")
+      message =
+        begin
+          coder.decode(message)
+        rescue RangeError
+          message.gsub(/&#\d+;/, "")
+        end
+      message = message.scrub("")
+
       message = CGI.unescapeHTML(message)
       message.gsub(/\s*<br>\s*/i, "\n").strip
     end
