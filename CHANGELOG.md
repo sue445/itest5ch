@@ -1,5 +1,11 @@
 ## master
-[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.0...master)
+[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.1...master)
+
+## [v3.0.1](https://github.com/sue445/itest5ch/releases/tag/v3.0.1)
+[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.0...v3.0.1)
+
+* Fix RangeError invalid codepoint in UTF-8 when htmlentities 4.4.0+
+  * https://github.com/sue445/itest5ch/pull/115
 
 ## [v3.0.0](https://github.com/sue445/itest5ch/releases/tag/v3.0.0)
 [full changelog](http://github.com/sue445/itest5ch/compare/v2.0.2...v3.0.0)
