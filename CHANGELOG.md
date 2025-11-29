@@ -1,5 +1,11 @@
 ## master
-[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.1...master)
+[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.2...master)
+
+## [v3.0.1](https://github.com/sue445/itest5ch/releases/tag/v3.0.2)
+[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.1...v3.0.2)
+
+* Release gem from GitHub Actions
+  * https://github.com/sue445/itest5ch/pull/117
 
 ## [v3.0.1](https://github.com/sue445/itest5ch/releases/tag/v3.0.1)
 [full changelog](http://github.com/sue445/itest5ch/compare/v3.0.0...v3.0.1)
