@@ -5,7 +5,7 @@
 [![Gem Version](https://badge.fury.io/rb/itest5ch.svg)](https://badge.fury.io/rb/itest5ch)
 [![test](https://github.com/sue445/itest5ch/actions/workflows/test.yml/badge.svg)](https://github.com/sue445/itest5ch/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/sue445/itest5ch/badge.svg)](https://coveralls.io/github/sue445/itest5ch)
-[![Maintainability](https://api.codeclimate.com/v1/badges/14a81b3f7da11e475242/maintainability)](https://codeclimate.com/github/sue445/itest5ch/maintainability)
+[![Maintainability](https://qlty.sh/gh/sue445/projects/itest5ch/maintainability.svg)](https://qlty.sh/gh/sue445/projects/itest5ch)
 
 ## Installation
 
