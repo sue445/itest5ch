@@ -45,8 +45,6 @@ jobs:
 
       - run: bundle exec rspec
 
-      - run: bundle exec rubocop
-
       - name: Slack Notification (not success)
         uses: act10ns/slack@cfcc30955fe9377f4f55e1079e5419ee1014269f # v2
         if: "! success()"
@@ -87,12 +85,40 @@ jobs:
           status: ${{ job.status }}
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
 
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - uses: ruby/setup-ruby@4c24fa5ec04b2e79eb40571b1cee2a0d2b705771 # v1.278.0
+        with:
+          ruby-version: ruby
+          bundler-cache: true
+
+      - name: bundle update
+        run: |
+          set -xe
+          bundle config path vendor/bundle
+          bundle update --all --jobs $(nproc) --retry 3
+
+      - run: bundle exec rubocop
+
+      - name: Slack Notification (not success)
+        uses: act10ns/slack@cfcc30955fe9377f4f55e1079e5419ee1014269f # v2
+        if: "! success()"
+        continue-on-error: true
+        with:
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+
   all-pass:
     if: always()
 
     needs:
       - test
       - yard
+      - rubocop
 
     runs-on: ubuntu-slim
 
