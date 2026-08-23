@@ -1,7 +1,13 @@
 ## master
-[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.2...master)
+[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.3...master)
 
-## [v3.0.1](https://github.com/sue445/itest5ch/releases/tag/v3.0.2)
+## [v3.0.3](https://github.com/sue445/itest5ch/releases/tag/v3.0.3)
+[full changelog](http://github.com/sue445/itest5ch/compare/v3.0.2...v3.0.3)
+
+* Migrate release_gem workflow to sue445/workflows (Also testing the gem release)
+  * https://github.com/sue445/itest5ch/pull/156
+
+## [v3.0.2](https://github.com/sue445/itest5ch/releases/tag/v3.0.2)
 [full changelog](http://github.com/sue445/itest5ch/compare/v3.0.1...v3.0.2)
 
 * Release gem from GitHub Actions
